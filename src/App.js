@@ -4,7 +4,7 @@ import Home from './pages/Home'
 export default function App() {
   return (
     <div className="App">
-      <Home name={ 'Wajahat' } />
+      <h1> Hello </h1>
     </div>
   );
 }
