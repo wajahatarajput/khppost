@@ -1,7 +1,7 @@
 import './App.css';
 import Home from './pages/Home'
 
-export function App() {
+export default function App() {
   return (
     <div className="App">
       <Home name={ 'Wajahat' } />
