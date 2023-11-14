@@ -1,10 +1,10 @@
 import './App.css';
-import Home from "./pages/Home";
+import RegisterPage from './pages/RegisterPage';
 
 export default function App() {
   return (
-    <div class="container">
-        <Home name={'Wajahat'} />
+    <div>
+      <RegisterPage/>
     </div>
   );
 }
