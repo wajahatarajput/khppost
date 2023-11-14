@@ -8,4 +8,4 @@ const Home = (props) => {
 
 // https://github.com/wajahatarajput/khppost/
 
-export default Home
+export default Home;
