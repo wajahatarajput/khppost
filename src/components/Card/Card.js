@@ -9,6 +9,7 @@ const Card = (props) => {
       <div className='card'>
           <div className='card-head'>
               <h1> {heading} </h1>
+              <h1>HEllo</h1>
           </div>
           <div className='card-body'>
               {children}
