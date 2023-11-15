@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './RegisterForm.css'
 
 const RegisterForm = () => {
 
@@ -13,8 +14,10 @@ const submitHandeler = (event)=>{
       <input type='email' placeholder='Email'/>
       <input type='password' placeholder='Password'/>
       <input type='password' placeholder='Confirm Password'/>
-      <input type='date'/>
+      <input type='date' />
+      <div className='btn_cont'>
       <input type='submit' value={'Register'}/>
+      </div>
     </form>
   )
 }

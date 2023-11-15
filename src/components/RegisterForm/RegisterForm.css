@@ -1,0 +1,27 @@
+.register-form{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 3rem;
+}
+.register-form>input{
+    margin: 1rem 3rem;
+    border: 1px solid #a4a6f9;
+    padding: .7rem 2rem;
+    border-radius: 20px;
+}
+.register-form>input:focus{
+    outline:2px solid #676df6;
+}
+.btn_cont{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 1rem 3rem;
+}
+.btn_cont>input{
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    background-color: #676df6;
+    color: white;
+    border: 1px solid #676df6;
+}
