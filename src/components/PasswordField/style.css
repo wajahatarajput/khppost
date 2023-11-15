@@ -4,6 +4,7 @@ input {
   
 input:focus {
     outline: none;
+    
 }
 div:has(> input:focus) { 
     outline: 0;
