@@ -1,10 +1,18 @@
 import './App.css';
-import RegisterPage from './pages/RegisterPage';
+import Login from './pages/Login'
+// import RegisterPage from './pages/RegisterPage';
 
 export default function App() {
   return (
-    <>
-      <RegisterPage/>
-    </>
+
+    // <>
+    //   <RegisterPage/>
+    // </>
+
+    <div>
+      <Login/>
+      {/* <RegisterPage/> */}
+    </div>
+
   );
 }
