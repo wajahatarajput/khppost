@@ -1,9 +1,11 @@
 import React from 'react';
-import RegisterElement from '../element/RegisterElement';
+// import RegisterElement from '../element/RegisterElement';
 
 const RegisterPage = () => {
   return (
-    <RegisterElement/>
+    <>
+    {/* <RegisterElement/> */}
+    </>
   )
 }
 

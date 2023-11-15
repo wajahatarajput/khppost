@@ -8,7 +8,6 @@ const RegisterForm = () => {
   const [password,setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');
   
-
   const toggleShowPassword = ()=>{
     setShowPassword(showPassword === 'password' ? 'text' : 'password');
   }
