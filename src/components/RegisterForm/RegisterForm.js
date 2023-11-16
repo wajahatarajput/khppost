@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PasswordField from '../PasswordField/PasswordField';
+import Links from '../Links/index'
 // import './RegisterForm.css'
 
 const RegisterForm = () => {
@@ -27,6 +28,11 @@ const submitHandeler = (event)=>{
       <input className='form-control border border-rounded my-2' type='date' />
       <div>
         <input className='btn btn-outline-primary btn-block my-2' type='submit' value={'Register'}/>
+      </div>
+      <hr/>
+      <div className='d-flex justify-content-center'>
+        <p className='mx-2 text-decoration-underline'>Already have account?</p>
+        <Links link={'/LoginPage'} title={"Sign Up"} />
       </div>
     </form>
   )
