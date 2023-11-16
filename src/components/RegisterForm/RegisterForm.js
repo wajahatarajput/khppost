@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PasswordField from '../PasswordField/PasswordField';
+import { Link } from 'react-router-dom';
 // import './RegisterForm.css'
 
 const RegisterForm = () => {
@@ -27,6 +28,10 @@ const submitHandeler = (event)=>{
       <div>
         <input className='btn btn-outline-primary btn-block my-2' type='submit' value={'Register'}/>
       </div>
+      <hr />
+      <Link to="/login">
+      <button className='btn text-white fw-bold boder bg-danger'>Login</button>
+      </Link>
     </form>
   )
 }

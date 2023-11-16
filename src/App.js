@@ -1,12 +1,13 @@
 import './App.css';
-import { LoginPage } from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import Navbar from './components/Navbar';
+
+
 
 export default function App() {
   return (
-    <div>
-      {/* <RegisterPage/> */}
-      <LoginPage />
-    </div>
+    <>
+      <Navbar />
+    </>
+
   );
 }

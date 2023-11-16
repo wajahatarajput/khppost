@@ -1,15 +1,14 @@
 import React from 'react'
 import Card from '../components/Card/Card'
-import Login from '../components/LoginPage/Login'
+import LoginForm from '../components/LoginForm/LoginForm'
 
-const LoginFeature = () => {
+export const LoginFeature = () => {
   return (
-    <div>
-        <Card heading="Login">
-            <Login />
-        </Card>
-    </div>
+    <>
+
+    <Card heading='Login Form' >
+        <LoginForm />
+    </Card>
+    </>
   )
 }
-
-export default LoginFeature

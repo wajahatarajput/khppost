@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import PasswordField from '../PasswordField/PasswordField';
 const Login = () => {
 
-    const [showPassword,setShowPassword] = useState('password');
-    const [password,setPassword] = useState('');
-    const [confirmPassword,setConfirmPassword] = useState('');
-    
-    const toggleShowPassword = ()=>{
-      setShowPassword(showPassword === 'password' ? 'text' : 'password');
-    }
-  
-  const submitHandeler = (event)=>{
+  const [showPassword, setShowPassword] = useState('password');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const toggleShowPassword = () => {
+    setShowPassword(showPassword === 'password' ? 'text' : 'password');
+  }
+
+  const submitHandeler = (event) => {
     event.preventDefault(); // stops the page from refresh
-  
+
   }
   return (
     <div>

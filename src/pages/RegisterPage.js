@@ -1,10 +1,12 @@
 import React from 'react';
-// import RegisterElement from '../element/RegisterElement';
+import RegisterElement from '../element/RegisterElement';
+import Navbar from '../components/Navbar';
 
 const RegisterPage = () => {
   return (
     <>
-    {/* <RegisterElement/> */}
+    <Navbar />
+    <RegisterElement/>
     </>
   )
 }

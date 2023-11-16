@@ -1,9 +1,14 @@
 import React from 'react'
-import LoginFeature from '../feature/LoginFeature'
-export const LoginPage = () => {
+import LoginElement from "../element/LoginElement";
+import Navbar from '../components/Navbar';
+
+function LoginPage() {
   return (
-    <div>
-      <LoginFeature />
-    </div>
+    <>
+      <Navbar />
+      <LoginElement />
+    </>
   )
 }
+
+export default LoginPage
