@@ -1,21 +1,23 @@
-import React from 'react'
-import './Navbar.css'
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 const Navbar = () => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">Navbar</a>
+                <Link className="navbar-brand" to="/">Navbar</Link>
                 <div className='hi'>
-                    <li className='link'><a href='#'>Home</a></li>
-                    <li><a href='#'>Services</a></li>
-                    <li><a href='#'>About</a></li>
-                    <li><a href='#'>Contact</a></li>
-                </div>
+                    <li className='link'><Link to="/">Home</Link></li>
+                    <li><Link to="/register">Register</Link></li>
+                    <li><Link to="/login">Login</Link></li>
 
+                </div>
             </nav>
         </div>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

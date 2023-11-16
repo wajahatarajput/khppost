@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PasswordField from '../PasswordField/PasswordField';
+import './Registerform.css'
 
 const LoginForm = () => {
 
@@ -19,8 +20,9 @@ const LoginForm = () => {
         <form className='register-form' onSubmit={submitHandeler}>
             <input className='form-control border border-rounded my-2' type='email' placeholder='Email' />
             <PasswordField placeholder={'Password'} handlePasswordChange={setPassword} />
-            <div>
+            <div className='flu'>
                 <input className='btn btn-outline-primary btn-block my-2' type='submit' value={'Login'} />
+                <button className='btn btn-outline-primary btn-block my-2'><a href='/register'>Register</a> </button>
             </div>
         </form>
     )

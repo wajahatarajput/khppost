@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PasswordField from '../PasswordField/PasswordField';
-// import './RegisterForm.css'
+
+import './Registerform.css'
 
 const RegisterForm = () => {
 
@@ -19,14 +20,15 @@ const RegisterForm = () => {
   }
   return (
     <form className='register-form' onSubmit={submitHandeler}>
-      {/* <input className='form-control border border-rounded my-2' type='text' placeholder='First Name'/> */}
-      {/* <input className='form-control border border-rounded my-2' type='text' placeholder='Last Name'/> */}
+      <input className='form-control border border-rounded my-2' type='text' placeholder='First Name' />
+      <input className='form-control border border-rounded my-2' type='text' placeholder='Last Name' />
       <input className='form-control border border-rounded my-2' type='email' placeholder='Email' />
       <PasswordField placeholder={'Password'} handlePasswordChange={setPassword} />
-      {/* <PasswordField placeholder={'Confirm Password'} handlePasswordChange={setConfirmPassword} /> */}
-      {/* <input className='form-control border border-rounded my-2' type='date' /> */}
-      <div>
-        <input className='btn btn-outline-primary btn-block my-2' type='submit' value={'Login'} />
+      <PasswordField placeholder={'Confirm Password'} handlePasswordChange={setConfirmPassword} />
+      <input className='form-control border border-rounded my-2' type='date' />
+      <div className='flu'>
+        <input className='btn btn-outline-primary btn-block my-2' type='submit' value={'Register'} />
+        <button className='btn btn-outline-primary btn-block my-2'><a href='/login'>Login</a> </button>
       </div>
     </form>
   )
