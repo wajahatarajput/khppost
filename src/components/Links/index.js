@@ -1,10 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-const Links = () => {
+const Links = (props) => {
+    const { link, title } = props;
   return (
-    <div>
-      
-    </div>
+      <li className="nav-item">
+        <Link className="nav-link active" to={link}>
+          {title}
+        </Link>
+      </li>
   )
 }
 

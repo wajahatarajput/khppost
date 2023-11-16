@@ -4,9 +4,11 @@ import RegisterForm from '../components/RegisterForm/RegisterForm';
 
 const RegisterFeature = () => {
   return (
-    <Card heading="Register On KHP Social Media">
-      <RegisterForm/>
-    </Card>
+    <>
+      <Card heading="Register On KHP Social Media">
+        <RegisterForm/>
+      </Card>
+    </>
   )
 }
 

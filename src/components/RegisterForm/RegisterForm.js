@@ -28,7 +28,10 @@ const submitHandeler = (event)=>{
       <div>
         <input className='btn btn-outline-primary btn-block my-2' type='submit' value={'Register'}/>
       </div>
+      <hr />
+      {/* Link to Login */}
     </form>
+
   )
 }
 
