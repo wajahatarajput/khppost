@@ -6,24 +6,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
+import { routes } from './utils';
 
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-]);
+const router = createBrowserRouter(routes);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
