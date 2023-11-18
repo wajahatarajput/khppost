@@ -32,7 +32,7 @@ const submitHandeler = (event)=>{
       <hr/>
       <div className='d-flex justify-content-center'>
         <p className='mx-2 text-decoration-underline'>Already have account?</p>
-        <Links link={'/LoginPage'} title={"Sign Up"} />
+        <Links link={'/LoginPage'} title={"Login"} />
       </div>
     </form>
   )
