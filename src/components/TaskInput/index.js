@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../button'
 
 const TaskInput = (props) => {
     const {setData} = props;
@@ -14,7 +15,8 @@ const TaskInput = (props) => {
   return (
     <form onSubmit={handleSubmit}>
         <input type='text'/>
-        <input type='submit' value='Add'/>
+        {/* <input type='submit' value='Add'/> */}
+        <Button btnValue="Bablu" />
     </form>
   )
 }
