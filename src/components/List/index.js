@@ -3,11 +3,13 @@ import React from 'react'
 const List = (props) => {
     const {data} = props
   return (
-    <ul>
-    {
-        data.map((value)=><li>{value}</li>)
-    }
-    </ul>
+    <div className='my-2 d-flex'>
+      <ul>
+      {
+          data.map((value)=><li>{value}</li>)
+      }
+      </ul>
+    </div>
   )
 }
 
