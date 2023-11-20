@@ -1,5 +1,6 @@
 import React from 'react';
 import Links from '../Links';
+import { menu } from '../../utils';
 
 const Navbar = () => {
   return (
@@ -11,9 +12,16 @@ const Navbar = () => {
               </button>
         <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
-              <Links link={'/'} title={'Home'} />
+              {menu?.map((value)=>{
+                return (
+                  <>
+                    <Links link={value[0]} title={value[1]} />
+                  </>
+                )
+              })}
+              {/* <Links link={'/'} title={'Home'} />
               <Links link={'/register'} title={'Register'} />
-              <Links link={'/login'} title={'Login'} />                      
+              <Links link={'/login'} title={'Login'} />                       */}
             </ul>
         </div>
     </div>

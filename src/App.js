@@ -4,7 +4,7 @@ import { Card, List, Navbar, TaskInput } from './components';
 
 export default function App() {
   const [data,setData] = useState([]);
-
+  
   return (
     <>
     <Navbar/>
