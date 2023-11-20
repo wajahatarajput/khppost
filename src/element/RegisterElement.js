@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterFeature from '../feature/RegisterFeature'
+import { RegisterFeature } from '../feature'
 
 export default function RegisterElement() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginFeature from "../feature/LoginFeature"
+import { LoginFeature } from '../feature'
 
 function LoginElement() {
   return (
