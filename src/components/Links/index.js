@@ -1,15 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-
 const Links = (props) => {
     const { link, title } = props;
   return (
-      <li className="nav-item">
-        <Link className="nav-link active" to={link}>
+      <li className={`${title === 'KHPPOSTS' ? 'h1' : 'nav-item'}`}>
+        <Link className="nav-link active text-white" to={link}>
           {title}
-        </Link>
+        </Link>   
       </li>
   )
 }
-
 export default Links;

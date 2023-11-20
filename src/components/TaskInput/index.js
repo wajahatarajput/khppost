@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../Button/Index';
 
 const TaskInput = (props) => {
     const {setData} = props;
@@ -13,8 +14,8 @@ const TaskInput = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-        <input type='text'/>
-        <input type='submit' value='Add'/>
+        <input type='text' className='form-control border border-rounded my-2'/>
+        <Button />
     </form>
   )
 }
