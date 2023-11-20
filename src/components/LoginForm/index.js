@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PasswordField from '../PasswordField/PasswordField';
+import PasswordField from '../PasswordField';
 
 const LoginForm = () => {
   const [password, setPassword] = useState('');

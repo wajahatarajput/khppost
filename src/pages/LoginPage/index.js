@@ -1,6 +1,6 @@
 import React from 'react'
-import LoginElement from "../../element/LoginElement";
 import Navbar from '../../components/Navbar';
+import { LoginElement } from '../../element';
 
 function LoginPage() {
   return (

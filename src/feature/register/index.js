@@ -1,6 +1,5 @@
 import React from 'react'
-import Card from '../../components/Card/Card'
-import RegisterForm from '../../components/RegisterForm/RegisterForm'
+import { Card, RegisterForm } from '../../components'
 
 const RegisterFeature = () => {
   return (

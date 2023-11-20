@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import './App.css';
-import TaskInput from './components/TaskInput';
-import List from './components/List';
-
+import { Card, List, Navbar, TaskInput } from './components';
 
 export default function App() {
   const [data,setData] = useState([]);
 
   return (
     <>
-      <TaskInput setData={setData}/>
-      <List data={data}/>
+    <Navbar/>
+      <Card heading="To Do List">
+        <TaskInput setData={setData}/>
+        <List data={data}/>
+      </Card>
     </>
   );
 }

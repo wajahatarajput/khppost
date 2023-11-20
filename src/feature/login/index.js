@@ -1,6 +1,5 @@
 import React from 'react';
-import LoginForm from "../../components/LoginForm/LoginForm";
-import Card from '../../components/Card/Card';
+import { Card, LoginForm } from '../../components';
 
 function LoginFeature(){
   return ( 
