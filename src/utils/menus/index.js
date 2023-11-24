@@ -4,6 +4,7 @@ const unauthMenu = [
   ['/','Home'],
   ['/register','Register'],
   ['/login','Login'],
+  ['/counter','Cart'],
 ];
 
 const authMenu = [

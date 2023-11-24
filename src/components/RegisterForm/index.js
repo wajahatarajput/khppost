@@ -3,7 +3,7 @@ import PasswordField from '../PasswordField';
 // import './RegisterForm.css'
 
 const RegisterForm = () => {
-
+ // condition / value inside a component
   const [showPassword,setShowPassword] = useState('password');
   const [password,setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');

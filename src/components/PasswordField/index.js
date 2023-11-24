@@ -13,8 +13,8 @@ const toggleShowPassword = ()=>{
 
   return (
     <div className='my-2 form-control d-flex justify-content-between align-items-center border border-rounded'>
-        <input onChange={(e)=>handlePasswordChange(e.target.value)} className='w-100 shadow-none' type={showPassword} placeholder={placeholder}/>
-       <i class="fa fa-eye" onClick={toggleShowPassword}></i>
+      <input onChange={(e)=>handlePasswordChange(e.target.value)} className='w-100 shadow-none' type={showPassword} placeholder={placeholder}/>
+      <i class="fa fa-eye" onClick={toggleShowPassword}></i>
     </div>
   )
 }

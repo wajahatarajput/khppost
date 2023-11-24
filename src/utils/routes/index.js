@@ -1,5 +1,5 @@
 import App from "../../App";
-import { LoginPage, RegisterPage } from "../../pages";
+import { CounterPage, LoginPage, RegisterPage } from "../../pages";
 
 export const routes = [
     {
@@ -13,5 +13,9 @@ export const routes = [
     {
       path: "/login",
       element: <LoginPage />,
+    },
+    {
+      path: "/counter",
+      element: <CounterPage />,
     },
   ]
