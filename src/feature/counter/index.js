@@ -1,55 +1,35 @@
-import React, { useState } from 'react';
+import React, {useEffect} from 'react';
 import { Card, CounterButton } from '../../components';
 import { divStyle } from './style';
-import { useCallback } from 'react';
-import { useEffect } from 'react';
+import useCounter from './hooks/useCounter';
 
 const CounterFeature = () => {
-  const [counter, setCounter] = useState(0);
-  const [data, setData] = useState([]);
-  
-  // useCallback(callbackFn,depArray)
-  // useEffect(callbackFn,depArray) -> runs on every refresh or load or dependancy value change
 
-  const getData = useCallback(async()=>{
-    console.log('fetching')
-    const res = await (await fetch('https://jsonplaceholder.typicode.com/todos')).json();
-
-    setData(res);
-  },[])
+  const {
+      counter,
+      handleButton,
+      getData,
+      ListData
+  } = useCounter();
 
   useEffect(()=>{
     getData();
-  },[counter]);
-  
-
-  const handleButton = useCallback((e)=>{
-      if(e.target.innerText === '-'){
-        if(counter > 0)
-          setCounter(prev=>prev-1);
-      }
-      else
-        setCounter(prev=>prev+1);
-  },[counter]);
+  },[]);
 
   return (
     <>
-    <>
-      {data.map((obj,index)=>{
-        console.log(obj)
-        return (
-          <div key={index}>{obj.id}</div>
-        )
-      })}
-    
-    
-    </>
      <Card heading={'Cart'}>
        <div style={divStyle}>
          <CounterButton handleButtonClick={handleButton} value={'-'}/>
          <h1> {counter} </h1>
          <CounterButton handleButtonClick={handleButton} value={'+'}/>  
        </div>
+       
+        <select className='form-control'>
+            {ListData}
+        </select>
+        <input type='number' className='form-control my-2' />
+        <button className='btn btn-outline-primary my-2'> Add to List </button>
      </Card>
      </>
   )
