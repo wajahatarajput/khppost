@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import PasswordField from '../PasswordField';
+import useRegisteredUsers from './hooks/useRegisteredUsers';
 // import './RegisterForm.css'
 
 const RegisterForm = () => {
- // condition / value inside a component
+  // condition / value inside a component
+  
+  const {
+    addUserData,
+    UsersTable
+  } = useRegisteredUsers();
   const [showPassword,setShowPassword] = useState('password');
   const [password,setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');
@@ -13,12 +19,9 @@ const RegisterForm = () => {
     setShowPassword(showPassword === 'password' ? 'text' : 'password');
   }
 
-const submitHandeler = (event)=>{
-  event.preventDefault(); // stops the page from refresh
 
-}
   return (
-    <form className='register-form' onSubmit={submitHandeler}>
+    <form className='register-form' onSubmit={addUserData}>
       <input className='form-control border border-rounded my-2' type='text' placeholder='First Name'/>
       <input className='form-control border border-rounded my-2' type='text' placeholder='Last Name'/>
       <input className='form-control border border-rounded my-2' type='email' placeholder='Email'/>
@@ -30,6 +33,7 @@ const submitHandeler = (event)=>{
       </div>
       <hr />
       {/* Table */}
+      {UsersTable}
     </form>
 
   )
