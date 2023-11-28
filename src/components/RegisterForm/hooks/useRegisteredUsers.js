@@ -11,6 +11,7 @@ const useRegisteredUsers = () => {
             email: e.target[2].value,
             password: e.target[4].value,
             dob: e.target[5].value    
+            
         }])
     }, []);
 
