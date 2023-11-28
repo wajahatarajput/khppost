@@ -1,26 +1,15 @@
-import React, {useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Card, CounterButton } from '../../components';
 import { divStyle } from './style';
-import useCounter from './hooks/useCounter';
+import useAPI from './hooks/useAPI';
 
 const CounterFeature = () => {
-  const {
-      counter,
-      handleButton,
-      getData,
-      ListData,
-      addToList
-  } = useCounter();
+
+  const { ListData, getData, counter, handleBtnClick, handleButton } = useAPI();
 
   useEffect(()=>{
     getData();
-  },[]);
-
-  const handleBtnClick = useCallback((submitEvent)=>{
-    submitEvent.preventDefault();
-    submitEvent.target[0].value && addToList(submitEvent.target[0].value);
-    submitEvent.target[0].value = '';
-  },[]);
+  },[getData]);
 
   return (
     <>

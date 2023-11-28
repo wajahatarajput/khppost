@@ -1,4 +1,4 @@
-useCallback(async ()=>{
+`useCallback(async ()=>{
     await fetch()
 },[])
 useCallback(function,depArray) // functions
@@ -9,3 +9,7 @@ useEffect(function,depArray) // constructor
   
   // useCallback(callbackFn,depArray)
   // useEffect(callbackFn,depArray) -> runs on every refresh or load or dependancy value change
+
+  Custom Hooks
+  use keyword
+  useAPI

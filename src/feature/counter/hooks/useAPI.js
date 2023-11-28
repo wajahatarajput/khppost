@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 
-const useCounter = () => {
+const useAPI = () => {
     const [counter, setCounter] = useState(0);
     const [data, setData] = useState([]);
   
@@ -31,19 +31,28 @@ const useCounter = () => {
         else
           setCounter(prev=>prev+1);
     },[counter]);
-
+  
     const addToList = useCallback((input)=>{
         setData(data=>[...data,input])
     },[])
- 
+  
+  
+    const handleBtnClick = useCallback((submitEvent)=>{
+        submitEvent.preventDefault();
+        submitEvent.target[0].value && addToList(submitEvent.target[0].value);
+        submitEvent.target[0].value = '';
+    }, [addToList]);
+    
 
     return {
         counter,
-        ListData,
-        handleButton,
         getData,
-        addToList
+        handleBtnClick,
+        handleButton,
+        ListData
     }
+
+
 }
 
-export default useCounter;
+export default useAPI
