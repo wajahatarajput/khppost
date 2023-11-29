@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import PasswordField from '../PasswordField';
 import useRegisteredUsers from './hooks/useRegisteredUsers';
+import useUsersProvider from '../../providers/UsersProvider/hook';
 // import './RegisterForm.css'
 
 const RegisterForm = () => {
   // condition / value inside a component
+
+  const { users, addUserData } = useUsersProvider();
+
+  console.log(users)
   
-  const {
-    addUserData,
-    UsersTable
-  } = useRegisteredUsers();
+  // const {
+  //   addUserData,
+  //   UsersTable
+  // } = useRegisteredUsers();
   const [showPassword,setShowPassword] = useState('password');
   const [password,setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');
@@ -33,7 +38,7 @@ const RegisterForm = () => {
       </div>
       <hr />
       {/* Table */}
-      {UsersTable}
+      {/* {UsersTable} */}
     </form>
 
   )

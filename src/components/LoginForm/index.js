@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import PasswordField from '../PasswordField';
+import useUsersProvider from '../../providers/UsersProvider/hook';
+import useAuth from '../../providers/AuthProvider/useAuth';
 
 const LoginForm = () => {
   const [password, setPassword] = useState('');
   console.log(password)
 
+  const { users } = useUsersProvider();
+  const { token , setUserContext } = useAuth();
   const submitHandler = (event)=>{
-  event.preventDefault(); // stops the page from refresh
+    event.preventDefault(); // stops the page from refresh
+    const data = users.filter((user) => {
+      return user?.email === event.target[0].value && user?.password === event.target[1].value;
+    })
+    
+    data?.length > 0 && setUserContext(data[0]);
 
   }
+
+  console.log(token)
 
   return (
       <form className='register-form form' onSubmit={submitHandler}>
