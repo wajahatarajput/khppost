@@ -1,18 +1,10 @@
 import React from 'react'
+import useTodo from '../../providers/ToDoProvider/useTodo'
 
-const TaskInput = (props) => {
-    const {setData} = props;
-
-    function handleSubmit(event){
-      event.preventDefault();
-      setData((oldData)=>{
-        return [...oldData,event.target[0].value]
-      })
-      
-    }
-
+const TaskInput = () => {
+  const { setListItem } = useTodo();
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={setListItem}>
         <input type='text' className='form-control border border-rounded my-2' placeholder='Enter Item'/>
         <input type='submit' value='Add' className='btn btn-outline-primary btn-block border border-rounded'/>
     </form>

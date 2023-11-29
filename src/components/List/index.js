@@ -1,7 +1,9 @@
 import React from 'react'
+import useTodo from '../../providers/ToDoProvider/useTodo';
 
-const List = (props) => {
-    const {data} = props
+const List = () => {
+  const { data } = useTodo();
+
   return (
     <div className='my-2 d-flex'>
       <ul>
