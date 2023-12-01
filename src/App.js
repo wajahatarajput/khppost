@@ -6,8 +6,7 @@ export default function App() {
   return (
     <>
       <AppLayout>
-
-        <Main/>
+      <Main/>
 
       </AppLayout>
     </>

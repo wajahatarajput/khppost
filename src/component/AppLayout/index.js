@@ -1,4 +1,5 @@
 import React from "react";
+import lion from './lion.jpg'
 
 const AppLayout = ({ children }) => {
   return (
@@ -77,6 +78,27 @@ const AppLayout = ({ children }) => {
                   Profile
                 </a>
               </li>
+              <div class="btn-group">
+                <img src={lion}
+                  alt="profile image"
+                  class="dropdown-toggle rounded-circle"
+                  style={{height:'50px', width:'50px'}}
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                />
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </ul>
           </div>
         </div>
