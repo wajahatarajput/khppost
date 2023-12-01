@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavBar = () => {
+const AppLayout = ({ children }) => {
   return (
     <>
       <nav className="navbar navbar-light navbar-expand-md py-3">
@@ -33,7 +33,7 @@ const NavBar = () => {
             <span className="visually-hidden">Toggle navigation</span>
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navcol-2">
+          <div className="py-2 py-md-0 collapse navbar-collapse d-flex flex-column flex-md-row d-md-block" id="navcol-2">
                       <input type="search" className="form-control col-xs-2" style={{ transform: 'translate(0px)' }} />
             <a
               className="btn btn-dark ms-md-2"
@@ -45,7 +45,7 @@ const NavBar = () => {
             >
               Search
             </a>
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav align-items-center">
               <li className="nav-item">
                 <a
                   className="nav-link active"
@@ -65,7 +65,7 @@ const NavBar = () => {
                                   href="#"
                                   style={{ fontWeight: 'bold', color: 'var(--bs-navbar-brand-color)' }}
                 >
-                  About
+                  Explore
                 </a>
               </li>
               <li className="nav-item">
@@ -74,15 +74,18 @@ const NavBar = () => {
                                   href="#"
                                   style={{fontWeight: 'bold', color: 'var(--bs-navbar-brand-color)'}}
                 >
-                  Services
+                  Profile
                 </a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      <main>
+        {children}
+      </main>
     </>
   );
 };
 
-export default NavBar;
+export default AppLayout;

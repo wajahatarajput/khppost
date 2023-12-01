@@ -1,12 +1,15 @@
 import './App.css';
-import { Main, NavBar } from './component';
+import { Main, AppLayout } from './component';
 
 export default function App() {
   
   return (
     <>
-      <NavBar />
-      <Main/>
+      <AppLayout>
+
+        <Main/>
+
+      </AppLayout>
     </>
   );
 }
