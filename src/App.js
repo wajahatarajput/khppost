@@ -1,12 +1,12 @@
 import './App.css';
-import { Main, AppLayout } from './component';
+import { AppLayout, PostGrid } from './component';
 
 export default function App() {
   
   return (
     <>
       <AppLayout>
-      <Main/>
+      <PostGrid/>
 
       </AppLayout>
     </>
