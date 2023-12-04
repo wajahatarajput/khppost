@@ -2,7 +2,7 @@ import React from 'react';
 import Cats from './cats.jpg'
 import { Dislike, DropDots, Like, Share } from './component';
 
-const PostCard = () => {
+const PostCard = ({post}) => {
   return (
       <>
       <div className="col">
@@ -26,9 +26,7 @@ const PostCard = () => {
                 <p className="text-primary card-text mb-0">Article</p>
                 <h4 className="card-title">Iftikhar</h4>
                 <p className="card-text">
-                  Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                  justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-                  id elit non mi porta gravida at eget metus.
+                  {post?.text}
                 </p>
 
               </div>
