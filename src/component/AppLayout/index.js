@@ -1,5 +1,5 @@
 import React from "react";
-import lion from './lion.jpg'
+import lion from './lion.jpg';
 
 const AppLayout = ({ children }) => {
   return (
@@ -75,6 +75,16 @@ const AppLayout = ({ children }) => {
                                   href="#"
                                   style={{fontWeight: 'bold', color: 'var(--bs-navbar-brand-color)'}}
                 >
+                    SignUp
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                                  className="nav-link"
+                                  href="C:\Users\Ali Computers\Desktop\khppost\src\component\AppLayout\SignUp\SignUpForm.js"
+                                  style={{fontWeight: 'bold', color: 'var(--bs-navbar-brand-color)'}}
+                                  
+                >
                   Profile
                 </a>
               </li>
@@ -106,8 +116,11 @@ const AppLayout = ({ children }) => {
       <main>
         {children}
       </main>
+      
+      
+
     </>
   );
 };
 
-export default AppLayout;
+export default AppLayout
