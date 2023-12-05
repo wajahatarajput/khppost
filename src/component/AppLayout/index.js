@@ -1,5 +1,7 @@
 import React from "react";
-import lion from './lion.jpg'
+import lion from './lion.jpg';
+import { routes, routes_names } from './../../utils';
+import { Link, NavLink } from "react-router-dom";
 
 const AppLayout = ({ children }) => {
   return (
@@ -47,37 +49,25 @@ const AppLayout = ({ children }) => {
               Search
             </a>
             <ul className="navbar-nav align-items-center">
-              <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  href="#"
-                  style={{
-                  fontWeight: 'bold',
-                  backdropFilter: 'opacity(1)',
-                  backdropFilter: 'opacity(1)'
-                }}
-                >
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                                  className="nav-link"
-                                  href="#"
-                                  style={{ fontWeight: 'bold', color: 'var(--bs-navbar-brand-color)' }}
-                >
-                  Explore
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                                  className="nav-link"
-                                  href="#"
-                                  style={{fontWeight: 'bold', color: 'var(--bs-navbar-brand-color)'}}
-                >
-                  Profile
-                </a>
-              </li>
+              {
+                routes?.map((route, index) => {
+                  console.log(route)
+                  return (
+                    <>
+                      <li className="nav-item">
+                        <NavLink className="nav-link active" style={{
+                          fontWeight: 'bold',
+                          backdropFilter: 'opacity(1)',
+                          backdropFilter: 'opacity(1)',
+                          width: 'max-content'
+                }} to={route.path}> 
+                          {routes_names[index]}
+                        </NavLink>
+                      </li>
+                    </>
+                  )
+                })
+              }
               <div class="btn-group">
                 <img src={lion}
                   alt="profile image"

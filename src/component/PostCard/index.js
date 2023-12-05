@@ -25,7 +25,10 @@ const PostCard = ({post}) => {
               <div className="card-body p-4">
                 <p className="text-primary card-text mb-0">Article</p>
                 <h4 className="card-title">Iftikhar</h4>
-                <p className="card-text">
+            <p className="card-text" style={{
+              height: '48px',
+              overflow: 'hidden'
+                }}>
                   {post?.text}
                 </p>
 
