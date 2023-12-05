@@ -1,5 +1,5 @@
 import './App.css';
-import { AppLayout, PostGrid } from './component';
+import { AppLayout, Login, PostGrid } from './component';
 
 export default function App() {
   
@@ -9,6 +9,7 @@ export default function App() {
       <PostGrid/>
 
       </AppLayout>
+      <Login/>
     </>
   );
 }
