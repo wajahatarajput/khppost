@@ -1,7 +1,7 @@
 import React from "react";
 import lion from './lion.jpg';
 import { routes, routes_names } from './../../utils';
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const AppLayout = ({ children }) => {
   return (
@@ -37,13 +37,14 @@ const AppLayout = ({ children }) => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="py-2 py-md-0 collapse navbar-collapse d-flex flex-column flex-md-row d-md-block" id="navcol-2">
-                      <input type="search" className="form-control col-xs-2" style={{ transform: 'translate(0px)' }} />
+              <input type="search" className="form-control input-field col-xs-2" style={{ transform: 'translate(0px)' }} />
             <a
               className="btn btn-dark ms-md-2"
               role="button"
               href="#"
               style={{
-              transform: 'translate(0px) scale(0.81)'
+                transform: 'translate(0px) scale(0.81)',
+                borderRadius:'65px'
             }}
             >
               Search

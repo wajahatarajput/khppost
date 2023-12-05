@@ -1,14 +1,10 @@
-import { BrowsePostsElement, LoginElement, SignupElement } from "../../elements";
+import { BrowsePostsElement, LoginElement } from "../../elements";
 
 
 const UnauthenticatedRoutes = [
     {
         path: "/",
-        element: <SignupElement />,
-    },
-    {
-        path: '/login',
-        element: <LoginElement/>
+        element: <LoginElement />,
     },
     {
         path: '/browserposts',
@@ -16,7 +12,7 @@ const UnauthenticatedRoutes = [
     }
 ];
 
-const UnauthenticatedRoutesNames = ['Sign Up', 'Login', 'Browse'];
+const UnauthenticatedRoutesNames = ['Login / Register', 'Browse'];
 
 const AuthenticatedRoutes = [
     {
@@ -25,7 +21,7 @@ const AuthenticatedRoutes = [
     }
 ];
 
-const AuthenticatedRoutesNames = ['Sign Up', 'Login', 'Browse'];
+const AuthenticatedRoutesNames = ['Login / Register', 'Browse'];
 
 const isAuthenticated = false;
 
