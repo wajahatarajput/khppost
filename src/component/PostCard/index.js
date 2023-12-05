@@ -9,7 +9,8 @@ const PostCard = ({post}) => {
             
             <div className="card">
             <div className="d-flex pt-3 px-3 justify-content-between">
-                  <img
+            <img
+              alt=''
                     className="rounded-circle flex-shrink-0 me-3 fit-cover"
                     width="50"
                     height="50"
@@ -33,7 +34,8 @@ const PostCard = ({post}) => {
                 </p>
 
               </div>
-              <img
+          <img
+            alt=''
                 className="card-img-top w-100 d-block fit-cover"
                               style={{ height: '200px' }}
                 src={Cats}
