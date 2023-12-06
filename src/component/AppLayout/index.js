@@ -37,7 +37,7 @@ const AppLayout = ({ children }) => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="py-2 py-md-0 collapse navbar-collapse d-flex flex-column flex-md-row d-md-block" id="navcol-2">
-              <input type="search" className="form-control input-field col-xs-2" style={{ transform: 'translate(0px)' }} />
+              <input type="search" className="form-control input-field col-xs-2" style={{ transform: 'translate(0px)', border: 'none', borderBottom: '1px solid black'}} />
             <a
               className="btn btn-dark ms-md-2"
               role="button"
