@@ -101,7 +101,6 @@
 .input-field, input:is(:focus, :valid){
     border-bottom-color: #000000;
 }
-
 .input-field i{
     position: absolute;
     top: 50%;
@@ -112,7 +111,7 @@
 }
 
 .input-field input:is(:focus, :valid) ~ i{
-    color: ##000000;
+    color: #000000;
 }
 
 .input-field i.icon{
