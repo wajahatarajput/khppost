@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { PostCard, PostGrid } from '../../component';
-import { POST_DATA } from '../../data/PostsData';
+import axios from 'axios';
 
 const BrowsePostsFeature = () => {
+  const [data, setData] = useState([]);
+
+  const getData = useCallback(async () => {
+    await axios.get('http://localhost:3180/getpostdata').then((res) => {
+      setData(res.data)
+    })
+  },[])
 
   useEffect(() => {
-    //api call
-  },[])
+    getData()
+  },[getData])
 
   return (
     <PostGrid>
       {
-        POST_DATA.map((post) => {
+        data.map((post) => {
           return <PostCard post={post}/>
         })
       }
