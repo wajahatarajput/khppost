@@ -1,5 +1,4 @@
 import './App.css';
-import { AppLayout } from './component';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -7,7 +6,6 @@ import {
 import { routes } from './utils';
 
 export default function App() {
-
   const router = createBrowserRouter(routes);
   
   return (

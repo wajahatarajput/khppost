@@ -12,12 +12,12 @@ const ComposePostComponent = () => {
               <form action="#">
                 {
                   image ? 
-              <div className="input-field">
-                  <img src={image} alt='No Image Uploaded Click to Upload Image!!' style={{maxWidth: "25%", height:' auto'}} />
+              <div style={{background: `url(${image})`, height: '250px'}}>
+                      <i className='fa fa-upload upload-icon' htmlFor={'file' } />
               </div>
                   :
                 <div className="input-field">
-                  <input type="file" required onChange={e=>setImage(URL.createObjectURL(e.target.files[0]))}/>
+                  <input id='file' type="file" required onChange={e=>setImage(URL.createObjectURL(e.target.files[0]))}/>
                   <i className="uil uil-envelope icon"></i>
                 </div>
                 }

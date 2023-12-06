@@ -16,7 +16,7 @@ const LoginComponent = () => {
       <div className='main-cover'>
     <div className={`containerMain ${isSignUpActive ? 'active' : ''}`}>
       <div className="forms">
-        <div className={`form login ${isSignUpActive ? '' : 'active'}`}>
+        <div className={`form login ${isSignUpActive ? 'd-none' : 'active d-block'}`}>
           <span className="title">Login</span>
           <form action="#">
             <div className="input-field">
@@ -63,7 +63,7 @@ const LoginComponent = () => {
             </span>
           </div>
         </div>
-        <div className={`form signup ${isSignUpActive ? 'active' : ''}`}>
+        <div className={`form signup ${isSignUpActive ? 'active d-block' : 'd-none'}`}>
           <span className="title">Registration</span>
           <form action="#">
             <div className="input-field">

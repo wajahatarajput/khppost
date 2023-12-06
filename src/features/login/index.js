@@ -1,10 +1,9 @@
 import React from 'react'
-// import { LoginComponent } from '../../component';
-import ComposePostComponent from '../../component/ComposePostComponent';
+import { LoginComponent } from '../../component';
 
 const LoginFeature = () => {
   return (
-    <ComposePostComponent/>
+    <LoginComponent/>
   )
 }
 

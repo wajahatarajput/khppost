@@ -1,4 +1,4 @@
-import { BrowsePostsElement, LoginElement } from "../../elements";
+import { BrowsePostsElement, CreatePostElement, LoginElement } from "../../elements";
 
 
 const UnauthenticatedRoutes = [
@@ -9,19 +9,27 @@ const UnauthenticatedRoutes = [
     {
         path: '/browserposts',
         element:<BrowsePostsElement/>
+    },
+    {
+        path: '/createposts',
+        element:<CreatePostElement/>
     }
 ];
 
-const UnauthenticatedRoutesNames = ['Login / Register', 'Browse'];
+const UnauthenticatedRoutesNames = ['Login / Register', 'Browse','Create'];
 
 const AuthenticatedRoutes = [
     {
-        path: '/browserposts',
+        path: '/',
         element: <BrowsePostsElement/>
+    },
+    {
+        path: '/createposts',
+        element:<CreatePostElement/>
     }
 ];
 
-const AuthenticatedRoutesNames = ['Login / Register', 'Browse'];
+const AuthenticatedRoutesNames = ['Browse','Create'];
 
 const isAuthenticated = false;
 

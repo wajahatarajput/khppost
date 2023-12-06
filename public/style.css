@@ -24,23 +24,40 @@
     border-radius: 10px;
     box-shadow: 0 5px 10px #3735358b;
     overflow: hidden;
+    /* height: -webkit-fill-available; */
     margin: 0 20px;
 }
 
 .containerMain .forms{
     display: flex;
     align-items: center;
-    height: 440px;
-    width: 200%;
+    /* height: -webkit-fill-available; */
+    width: 100%;
     transition: height 0.2s ease;
 }
 
 
 .containerMain .form{
-    width: 50%;
+    width: 100%;
     padding: 30px;
     background-color: #fff;
     transition: margin-left 0.18s ease;
+}
+
+.upload-icon{
+    position: relative;
+    left: 85%;
+    background-color: whitesmoke;
+    font-size: x-large;
+    padding: 10px;
+    top: 80%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.upload-icon:hover{
+    background-color: black;
+    color: white;
 }
 
 .containerMain.active .login{
