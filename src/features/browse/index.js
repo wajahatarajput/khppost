@@ -1,25 +1,20 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { PostCard, PostGrid } from '../../component';
-import axios from 'axios';
+import { usePosts } from '../../hooks/usePosts';
 
 const BrowsePostsFeature = () => {
-  const [data, setData] = useState([]);
 
-  const getData = useCallback(async () => {
-    await axios.get('http://localhost:3180/getpostdata').then((res) => {
-      setData(res.data)
-    })
-  },[])
+  const {data, getData, handleDelete } = usePosts()
 
   useEffect(() => {
-    getData()
+    getData();
   },[getData])
 
   return (
     <PostGrid>
       {
         data.map((post) => {
-          return <PostCard post={post}/>
+          return <PostCard post={post} handleDelete={handleDelete} />
         })
       }
     </PostGrid>

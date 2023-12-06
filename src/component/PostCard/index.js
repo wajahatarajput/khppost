@@ -2,7 +2,7 @@ import React from 'react';
 import Cats from './cats.jpg'
 import { Dislike, DropDots, Like, Share } from './component';
 
-const PostCard = ({post}) => {
+const PostCard = ({post, handleDelete}) => {
   return (
       <>
       <div className="col">
@@ -20,7 +20,7 @@ const PostCard = ({post}) => {
                     <p className="fw-bold mb-0">Iftikhar Chachar</p>
                     <p className="text-muted mb-0">Rind</p>
             </div>
-            <DropDots/>
+            <DropDots post={post} handleDelete={handleDelete} />
           </div>
           <hr/>
               <div className="card-body p-4">

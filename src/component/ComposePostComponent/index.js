@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { usePosts } from '../../hooks/usePosts';
 
 const ComposePostComponent = () => {
   const [image, setImage] = useState(null);
+  const { handleDelete } = usePosts();
 
     return (
       <div className='main-cover'>
@@ -35,7 +37,7 @@ const ComposePostComponent = () => {
               <i className="uil uil-lock icon"></i>
             </div>
             <div className="input-field button">
-              <input type="button" value="Create" />
+              <input type="button" value="Create" onClick={handleDelete}/>
             </div>
           </form>
         </div>
