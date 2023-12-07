@@ -22,13 +22,13 @@ const ComposePostComponent = () => {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
 
-    const post = {
+    const currentPost = {
       id: "1234",
       creator: {
         id: "5cd0104d-e42b-47ea-b0f2-9e0f0b7bf510",
         displayName: "Mujeeb",
         nickName: "Wallis & Futuna-coral-Neysa",
-        avatarURL: image,
+        avatarURL: image || post?.photo?.mainSrc,
         __typename: "User"
       },
       status: "PUBLISHED",
@@ -41,13 +41,13 @@ const ComposePostComponent = () => {
         __typename: "Location"
       },
       photo: {
-        mainSrc: image,
+        mainSrc: image || post?.photo?.mainSrc,
         thumbnailSrc: "/api/content/218ad957-6972-41aa-bc2f-50e59c32ab24.jpg",
         alt: e.target[1].value,
         __typename: "Photo"
       },
       text: e.target[1].value,
-      createdOn: new Date().toLocaleString(),
+      createdOn: post?.id ? post?.createdOn : new Date().toLocaleString(),
       updatedOn: new Date().toLocaleString(),
       statistics: {
         id: "703d563f-a6df-4496-8efa-64a741979c12",
@@ -77,10 +77,14 @@ const ComposePostComponent = () => {
       },
       __typename: "Post"
     };
+    console.log(post, currentPost)
     //edit post call api for edit post
-    await handleCreatePost(post);
-    // await handleUpdatePost(post)
-  }, [image, handleCreatePost]);
+    !post?.id
+      ?
+      await handleCreatePost(currentPost)
+      :
+      await handleUpdatePost(currentPost)
+  }, [image, handleCreatePost, handleUpdatePost, post]);
 
 
   return (
@@ -92,10 +96,10 @@ const ComposePostComponent = () => {
             <form onSubmit={handleSubmit}>
               <div style={{ background: `url(${image || post?.photo?.mainSrc})`, height: '250px' }}>
                 <label className='fa fa-upload upload-icon' htmlFor={'file'} />
-                <input id='file' type="file" required onChange={handleImageUpload} hidden />
+                <input id='file' type="file" onChange={handleImageUpload} hidden />
               </div>
               <div className="input-field">
-                <input type="text" placeholder="Enter Text" value={post?.text} required />
+                <input type="text" placeholder="Enter Text" defaultValue={post?.text} required />
                 <i className="uil uil-envelope icon"></i>
               </div>
               <div className="input-field">
@@ -104,11 +108,12 @@ const ComposePostComponent = () => {
                   className="tags"
                   placeholder="Enter Tags"
                   required
+                  defaultValue={post?.id && post?.tags[0]?.slug}
                 />
                 <i className="uil uil-lock icon"></i>
               </div>
               <div className="input-field button">
-                <input type="submit" value="Create" />
+                <input type="submit" value={post?.id ? 'Update' : 'Create'} />
               </div>
             </form>
           </div>
