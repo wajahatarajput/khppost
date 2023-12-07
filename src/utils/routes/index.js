@@ -8,28 +8,32 @@ const UnauthenticatedRoutes = [
     },
     {
         path: '/browserposts',
-        element:<BrowsePostsElement/>
+        element: <BrowsePostsElement />
     },
     {
         path: '/createposts',
-        element:<CreatePostElement/>
+        element: <CreatePostElement />
+    },
+    {
+        path: '/editposts',
+        element: <CreatePostElement />
     }
 ];
 
-const UnauthenticatedRoutesNames = ['Login / Register', 'Browse','Create'];
+const UnauthenticatedRoutesNames = ['Login / Register', 'Browse', 'Create'];
 
 const AuthenticatedRoutes = [
     {
         path: '/',
-        element: <BrowsePostsElement/>
+        element: <BrowsePostsElement />
     },
     {
         path: '/createposts',
-        element:<CreatePostElement/>
+        element: <CreatePostElement />
     }
 ];
 
-const AuthenticatedRoutesNames = ['Browse','Create'];
+const AuthenticatedRoutesNames = ['Browse', 'Create'];
 
 const isAuthenticated = false;
 
