@@ -77,7 +77,8 @@ const ComposePostComponent = () => {
       },
       __typename: "Post"
     };
-    console.log(post, currentPost)
+
+
     //edit post call api for edit post
     !post?.id
       ?
