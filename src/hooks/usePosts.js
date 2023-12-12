@@ -6,13 +6,13 @@ export const usePosts = () => {
 
   const getData = useCallback(async () => {
     await axios.get('http://localhost:3180/getpostdata').then((res) => {
-      setData(res.data)
+      setData(res.data || [])
     })
   }, []);
 
   const handleDelete = useCallback(async (id) => {
     await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then((response) => {
-      setData(response.data);
+      setData(response.data || []);
     });
   }, []);
 

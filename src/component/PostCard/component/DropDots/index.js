@@ -19,7 +19,7 @@ const DropDots = ({ post, handleDelete }) => {
             </Link>
           </li>
           <li className='dropdown-item' onClick={() => {
-            handleDelete(post?.id)
+            handleDelete(post?._id)
           }}>
             {/* <button className="dropdown-item" to="#"> */}
             Delete

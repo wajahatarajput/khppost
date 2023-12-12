@@ -23,7 +23,6 @@ const ComposePostComponent = () => {
     e.preventDefault();
 
     const currentPost = {
-      id: "1234",
       creator: {
         id: "5cd0104d-e42b-47ea-b0f2-9e0f0b7bf510",
         displayName: "Mujeeb",
