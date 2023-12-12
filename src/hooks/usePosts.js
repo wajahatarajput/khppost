@@ -11,10 +11,10 @@ export const usePosts = () => {
   }, []);
 
   const handleDelete = useCallback(async (id) => {
-    await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then((response) => {
-      setData(response.data || []);
+    await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then(async (response) => {
+      await getData();
     });
-  }, []);
+  }, [getData]);
 
   const handleCreatePost = useCallback(async (post) => {
     await axios.post('http://localhost:3180/createpost', { post }).then((res) => {
