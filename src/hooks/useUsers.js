@@ -4,7 +4,7 @@ import { useAuth } from '../providers';
 
 export const useUsers = () => {
     const [data, setData] = useState([]);
-    const { user, setUser } = useAuth();
+    const { setUser } = useAuth();
 
     const loginUser = useCallback(async (user) => {
         await axios.post('http://localhost:3180/login', { user }).then((res) => {
