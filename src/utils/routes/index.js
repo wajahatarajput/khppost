@@ -1,11 +1,20 @@
 import { BrowsePostsElement, CreatePostElement, LoginElement } from "../../elements";
 
 
-const UnauthenticatedRoutes = [
+export const UnauthenticatedRoutes = [
     {
         path: "/",
         element: <LoginElement />,
     },
+    {
+        path: '/browserposts',
+        element: <BrowsePostsElement />
+    }
+];
+
+export const UnauthenticatedRoutesNames = ['Login / Register', 'Browse'];
+
+export const AuthenticatedRoutes = [
     {
         path: '/browserposts',
         element: <BrowsePostsElement />
@@ -20,22 +29,4 @@ const UnauthenticatedRoutes = [
     }
 ];
 
-const UnauthenticatedRoutesNames = ['Login / Register', 'Browse', 'Create'];
-
-const AuthenticatedRoutes = [
-    {
-        path: '/',
-        element: <BrowsePostsElement />
-    },
-    {
-        path: '/createposts',
-        element: <CreatePostElement />
-    }
-];
-
-const AuthenticatedRoutesNames = ['Browse', 'Create'];
-
-const isAuthenticated = false;
-
-export const routes = isAuthenticated ? AuthenticatedRoutes.reverse() : UnauthenticatedRoutes.reverse();
-export const routes_names = isAuthenticated ? AuthenticatedRoutesNames.reverse() : UnauthenticatedRoutesNames.reverse();
+export const AuthenticatedRoutesNames = ['Browse', 'Create'];

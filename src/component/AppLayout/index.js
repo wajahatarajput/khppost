@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import lion from './lion.jpg';
-import { routes, routes_names } from './../../utils';
+import { AuthenticatedRoutes, AuthenticatedRoutesNames, UnauthenticatedRoutes, UnauthenticatedRoutesNames } from './../../utils';
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../providers";
 
 const AppLayout = ({ children }) => {
+
+  const { user } = useAuth();
+  const [routesArray, setRoutesArray] = useState(user ? AuthenticatedRoutes : UnauthenticatedRoutes);
+  const [routesNamesArray, setRoutesNamesArray] = useState(user ? AuthenticatedRoutesNames : UnauthenticatedRoutesNames);
+
   return (
     <>
       <nav className="navbar navbar-light navbar-expand-md py-3">
@@ -51,7 +57,7 @@ const AppLayout = ({ children }) => {
             </a>
             <ul className="navbar-nav align-items-center">
               {
-                routes?.map((route, index) => {
+                routesArray?.map((route, index) => {
                   if (route.path === '/editposts')
                     return <></>
                   else
@@ -64,7 +70,7 @@ const AppLayout = ({ children }) => {
                             backdropFilter: 'opacity(1)',
                             width: 'max-content'
                           }} to={route.path}>
-                            {routes_names[index - 1]}
+                            {routesNamesArray[index]}
                           </NavLink>
                         </li>
                       </>

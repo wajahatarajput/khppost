@@ -1,10 +1,21 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useUsers } from '../../hooks/useUsers';
+import { useAuth } from '../../providers';
+import { useNavigate } from 'react-router-dom';
 
 const LoginComponent = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isSignUpActive, setIsSignUpActive] = useState(false);
+  const [image, setImage] = useState(null);
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const { handleRegisterUser, loginUser } = useUsers();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/browserposts')
+    }
+  }, [user, navigate])
 
   const handleTogglePassword = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -14,13 +25,23 @@ const LoginComponent = () => {
     setIsSignUpActive(!isSignUpActive);
   };
 
+  const handleImageUpload = useCallback((e) => {
+    const file = e.target.files[0];
+    setImage(setImage);
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const imageDataURI = e.target.result;
+      setImage(imageDataURI);
+    };
+    reader.readAsDataURL(file);
+  }, []);
+
   const handleLoginUser = useCallback((e) => {
     e.preventDefault();
     const user = {
       email: e.target[0].value,
       password: e.target[1].value
     }
-    console.log(user)
     loginUser(user)
   }, [loginUser])
 
@@ -29,18 +50,21 @@ const LoginComponent = () => {
 
     if (e.target[3].value === e.target[4].value) {
       const user = {
-        id: 123,
         displayName: e.target[0].value,
         nickName: e.target[1].value,
         email: e.target[2].value,
         password: e.target[3].value,
+        dob: new Date(e.target[5].value),
+        profile: image
       }
+
+      console.log(user, e.target[5].value)
 
       handleRegisterUser(user)
     } else {
       alert(`Passwords Doesn't Match!!`);
     }
-  }, [handleRegisterUser])
+  }, [handleRegisterUser, image])
 
   return (
     <div className='main-cover'>
@@ -130,13 +154,13 @@ const LoginComponent = () => {
                   onClick={handleTogglePassword}
                 ></i>
               </div>
-              <div className="checkbox-text">
-                <div className="checkbox-content">
-                  <input type="checkbox" id="termCon" />
-                  <label htmlFor="termCon" className="text">
-                    I accepted all terms and conditions
-                  </label>
-                </div>
+
+              <div className='input-field'>
+                <input type='date' max="2000-01-01" required />
+              </div>
+              <div style={{ background: `url(${image})`, height: '250px' }}>
+                <label className='fa fa-upload upload-icon' htmlFor={'file'} />
+                <input id='file' type="file" onChange={handleImageUpload} hidden />
               </div>
               <div className="input-field button">
                 <input type="submit" value="Signup" />
