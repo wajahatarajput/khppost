@@ -7,15 +7,16 @@ const LoginComponent = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isSignUpActive, setIsSignUpActive] = useState(false);
   const [image, setImage] = useState(null);
-  const { user } = useAuth();
+  const { cookies } = useAuth();
   const navigate = useNavigate();
   const { handleRegisterUser, loginUser } = useUsers();
 
   useEffect(() => {
-    if (user) {
+    console.log(cookies.get('auth'))
+    if (cookies.get('auth')) {
       navigate('/browserposts')
     }
-  }, [user, navigate])
+  }, [cookies, navigate])
 
   const handleTogglePassword = () => {
     setIsPasswordVisible(!isPasswordVisible);

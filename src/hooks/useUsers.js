@@ -1,23 +1,32 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react'
 import { useAuth } from '../providers';
+import { useNavigate } from 'react-router-dom';
 
 export const useUsers = () => {
     const [data, setData] = useState([]);
-    const { setUser } = useAuth();
+    const { setUser, cookies } = useAuth();
+    const navigate = useNavigate();
 
     const loginUser = useCallback(async (user) => {
         await axios.post('http://localhost:3180/login', { user }).then((res) => {
             setData(res.data)
-            setUser(res.data)
+            setUser(res.data);
+            cookies.set("auth", res.data._id, { path: '/' })
+
         })
-    }, [setUser]);
+    }, [setUser, cookies]);
 
     const handleDelete = useCallback(async (id) => {
         await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then((response) => {
             setData(response.data);
         });
     }, []);
+
+    const logout = useCallback(async (id) => {
+        cookies.remove('auth');
+        navigate('/')
+    }, [cookies, navigate]);
 
     const handleRegisterUser = useCallback(async (user) => {
         await axios.post('http://localhost:3180/register', { user }).then((res) => {
@@ -33,6 +42,6 @@ export const useUsers = () => {
     }, [])
 
     return {
-        data, setData, loginUser, handleRegisterUser, handleDelete, handleUpdateUser
+        data, setData, logout, loginUser, handleRegisterUser, handleDelete, handleUpdateUser
     }
 }

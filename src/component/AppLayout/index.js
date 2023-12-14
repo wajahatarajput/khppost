@@ -3,12 +3,14 @@ import lion from './lion.jpg';
 import { AuthenticatedRoutes, AuthenticatedRoutesNames, UnauthenticatedRoutes, UnauthenticatedRoutesNames } from './../../utils';
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../providers";
+import { useUsers } from "../../hooks/useUsers";
 
 const AppLayout = ({ children }) => {
 
-  const { user } = useAuth();
-  const [routesArray, setRoutesArray] = useState(user ? AuthenticatedRoutes : UnauthenticatedRoutes);
-  const [routesNamesArray, setRoutesNamesArray] = useState(user ? AuthenticatedRoutesNames : UnauthenticatedRoutesNames);
+  const { cookies } = useAuth();
+  const { logout } = useUsers();
+  const [routesArray, setRoutesArray] = useState(cookies.get('auth') ? AuthenticatedRoutes : UnauthenticatedRoutes);
+  const [routesNamesArray, setRoutesNamesArray] = useState(cookies.get('auth') ? AuthenticatedRoutesNames : UnauthenticatedRoutesNames);
 
   return (
     <>
@@ -92,9 +94,9 @@ const AppLayout = ({ children }) => {
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <button class="dropdown-item" onClick={logout}>
                       Logout
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
