@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Cats from './cats.jpg'
 import { Dislike, DropDots, Like, Share } from './component';
 
 const PostCard = ({ post, handleDelete }) => {
+
   return (
     <>
       <div className="col">
-
         <div className="card">
           <div className="d-flex pt-3 px-3 justify-content-between">
             <img
@@ -38,7 +38,7 @@ const PostCard = ({ post, handleDelete }) => {
             alt=''
             className="card-img-top w-100 d-block fit-cover"
             style={{ height: '200px' }}
-            src={post.photo.mainSrc}
+            // src={uri}
           />
           <hr />
           <div className='d-flex flex-row justify-content-around pt-1 pb-4'>
