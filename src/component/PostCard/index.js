@@ -38,7 +38,7 @@ const PostCard = ({ post, handleDelete }) => {
             alt=''
             className="card-img-top w-100 d-block fit-cover"
             style={{ height: '200px' }}
-            src={post.photo.mainSrc}
+            src={post?.photo}
           />
           <hr />
           <div className='d-flex flex-row justify-content-around pt-1 pb-4'>

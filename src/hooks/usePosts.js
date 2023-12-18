@@ -1,14 +1,17 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react'
+import { usePost } from '../providers';
 
 export const usePosts = () => {
   const [data, setData] = useState([]);
+  const { replacePost, updatePost } = usePost()
 
   const getData = useCallback(async () => {
     await axios.get('http://localhost:3180/getpostdata').then((res) => {
       setData(res.data || [])
+      replacePost(...res.data)
     })
-  }, []);
+  }, [replacePost]);
 
   const handleDelete = useCallback(async (id) => {
     await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then(async (response) => {
@@ -18,9 +21,10 @@ export const usePosts = () => {
 
   const handleCreatePost = useCallback(async (post) => {
     await axios.post('http://localhost:3180/createpost', { post }).then((res) => {
-      setData(prev => [...prev, res.data]);
+      updatePost(prev => [...prev, res.data]);
+      replacePost(res.data);
     })
-  }, [])
+  }, [updatePost])
 
   const handleUpdatePost = useCallback(async (post) => {
     await axios.put('http://localhost:3180/updatepost', { post }).then((res) => {
