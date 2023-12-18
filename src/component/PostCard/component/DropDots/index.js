@@ -14,7 +14,7 @@ const DropDots = ({ post, handleDelete }) => {
         <ul className="dropdown-menu">
           <li>
             <Link className="dropdown-item" to={'/editposts'}
-              state={post}>
+              state={{ id: post?._id, post }}>
               Edit
             </Link>
           </li>

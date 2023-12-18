@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { PostCard, PostGrid } from '../../component';
 import { usePosts } from '../../hooks/usePosts';
+import { usePostProvider } from '../../providers';
 
 const BrowsePostsFeature = () => {
 
-  const { data, getData, handleDelete } = usePosts()
+  const { getData, handleDelete } = usePosts();
+  const { posts } = usePostProvider();
 
   useEffect(() => {
     getData();
@@ -13,7 +15,7 @@ const BrowsePostsFeature = () => {
   return (
     <PostGrid>
       {
-        data?.map((post) => {
+        posts?.map((post) => {
           return <PostCard post={post} handleDelete={handleDelete} />
         })
       }

@@ -1,5 +1,4 @@
 import React from 'react';
-import Cats from './cats.jpg'
 import { Dislike, DropDots, Like, Share } from './component';
 
 const PostCard = ({ post, handleDelete }) => {
@@ -14,18 +13,22 @@ const PostCard = ({ post, handleDelete }) => {
               className="rounded-circle flex-shrink-0 me-3 fit-cover"
               width="50"
               height="50"
-              src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"
+              src={post?.user?.profile}
             />
             <div>
-              <p className="fw-bold mb-0">Iftikhar Chachar</p>
-              <p className="text-muted mb-0">Rind</p>
+              <p className="fw-bold mb-0">{post?.user?.displayName}</p>
+              <p className="text-muted mb-0">{post?.user?.nickName}</p>
             </div>
             <DropDots post={post} handleDelete={handleDelete} />
           </div>
           <hr />
           <div className="card-body p-4">
-            <p className="text-primary card-text mb-0">Article</p>
-            <h4 className="card-title">Iftikhar</h4>
+            {
+              post?.tags?.map((tag) => {
+                return <p className="text-primary card-text mb-0">{tag}</p>
+              })
+            }
+            <h4 className="card-title">{post?.content}</h4>
             <p className="card-text" style={{
               height: '48px',
               overflow: 'hidden'
@@ -38,7 +41,7 @@ const PostCard = ({ post, handleDelete }) => {
             alt=''
             className="card-img-top w-100 d-block fit-cover"
             style={{ height: '200px' }}
-            src={post.photo.mainSrc}
+            src={post.photo[0]}
           />
           <hr />
           <div className='d-flex flex-row justify-content-around pt-1 pb-4'>

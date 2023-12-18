@@ -12,7 +12,6 @@ const LoginComponent = () => {
   const { handleRegisterUser, loginUser } = useUsers();
 
   useEffect(() => {
-    console.log(cookies.get('auth'))
     if (cookies.get('auth')) {
       navigate('/browserposts')
     }
@@ -46,7 +45,7 @@ const LoginComponent = () => {
     loginUser(user)
   }, [loginUser])
 
-  const handleSubmitReg = useCallback((e) => {
+  const handleSubmitReg = useCallback(async (e) => {
     e.preventDefault();
 
     if (e.target[3].value === e.target[4].value) {
@@ -58,10 +57,9 @@ const LoginComponent = () => {
         dob: new Date(e.target[5].value),
         profile: image
       }
-
-      console.log(user, e.target[5].value)
-
-      handleRegisterUser(user)
+      await handleRegisterUser(user).then(() => {
+        setIsSignUpActive(false);
+      })
     } else {
       alert(`Passwords Doesn't Match!!`);
     }

@@ -1,14 +1,18 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react'
+import { usePostProvider } from '../providers';
+import { useNavigate } from 'react-router-dom';
 
 export const usePosts = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  const { replacePost, updatePost } = usePostProvider();
 
   const getData = useCallback(async () => {
     await axios.get('http://localhost:3180/getpostdata').then((res) => {
-      setData(res.data || [])
+      replacePost(res.data || []);
     })
-  }, []);
+  }, [replacePost]);
 
   const handleDelete = useCallback(async (id) => {
     await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then(async (response) => {
@@ -18,18 +22,17 @@ export const usePosts = () => {
 
   const handleCreatePost = useCallback(async (post) => {
     await axios.post('http://localhost:3180/createpost', { post }).then((res) => {
-      setData(prev => [...prev, res.data]);
+      navigate('/browserposts')
     })
-  }, [])
+  }, [navigate])
 
-  const handleUpdatePost = useCallback(async (post) => {
-    await axios.put('http://localhost:3180/updatepost', { post }).then((res) => {
-      //write logic to update the specific post from post array
-      // setData(prev => [...prev, res.data]);
+  const handleUpdatePost = useCallback(async (id, post) => {
+    await axios.put('http://localhost:3180/updatepost', { id, post }).then(async (res) => {
+      navigate('/browserposts')
     })
-  }, [])
+  }, [navigate])
 
   return {
-    data, setData, getData, handleCreatePost, handleDelete, handleUpdatePost
+    getData, handleCreatePost, handleDelete, handleUpdatePost
   }
 }
