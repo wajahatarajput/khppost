@@ -1,11 +1,20 @@
 import React, { useCallback, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { usePosts } from '../../hooks/usePosts';
+<<<<<<< HEAD
 import { useAuth } from '../../providers'
 
 const ComposePostComponent = () => {
   const location = useLocation();
   const { id, post } = location.state || {};
+=======
+import { useAuth } from '../../providers';
+
+const ComposePostComponent = () => {
+  const location = useLocation();
+  const post = location.state || {};
+  const { cookies } = useAuth()
+>>>>>>> cbde9b0fcc174dc7e70a9f92bbc11d4fad15df2c
   const [image, setImage] = useState(null);
   const { handleCreatePost, handleUpdatePost } = usePosts();
   const { cookies } = useAuth();
@@ -27,6 +36,7 @@ const ComposePostComponent = () => {
 
     const currentPost = {
       content: e.target[1].value,
+<<<<<<< HEAD
       user: cookies.get('auth'), // Assuming you have a valid ObjectId for the user
       createdAt: new Date(),
       reactions: [], // Assuming you have valid ObjectIds for reactions
@@ -34,6 +44,15 @@ const ComposePostComponent = () => {
       photo: image || post?.photo, // Assuming you have actual photo data as a Buffer
       tags: [e.target[2].value],
       status: "PUBLISHED"
+=======
+      user: cookies.get('auth'),
+      createdAt: new Date().now,
+      reactions: [],
+      comments: [],
+      photo: image || post?.photo,
+      tags: [e.target[2].value],
+      status: 'PUBLISHED'
+>>>>>>> cbde9b0fcc174dc7e70a9f92bbc11d4fad15df2c
     };
 
 
