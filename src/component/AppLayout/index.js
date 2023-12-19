@@ -12,6 +12,7 @@ const AppLayout = ({ children }) => {
   const [routesArray, setRoutesArray] = useState(cookies.get('auth') ? AuthenticatedRoutes : UnauthenticatedRoutes);
   const [routesNamesArray, setRoutesNamesArray] = useState(cookies.get('auth') ? AuthenticatedRoutesNames : UnauthenticatedRoutesNames);
 
+  console.log(routesNamesArray)
   return (
     <>
       <nav className="navbar navbar-light navbar-expand-md py-3">
@@ -61,40 +62,38 @@ const AppLayout = ({ children }) => {
               {
                 routesArray?.map((route, index) => {
                   if (route.path === '/editposts')
-                    return <></>
+                    return <span key={index}></span>
                   else
                     return (
-                      <>
-                        <li className="nav-item">
-                          <NavLink className="nav-link active" style={{
-                            fontWeight: 'bold',
-                            backdropFilter: 'opacity(1)',
-                            backdropFilter: 'opacity(1)',
-                            width: 'max-content'
-                          }} to={route.path}>
-                            {routesNamesArray[index]}
-                          </NavLink>
-                        </li>
-                      </>
+                      <li className="nav-item" key={index}>
+                        <NavLink className="nav-link active" style={{
+                          fontWeight: 'bold',
+                          backdropFilter: 'opacity(1)',
+                          backdropFilter: 'opacity(1)',
+                          width: 'max-content'
+                        }} to={route.path}>
+                          {routesNamesArray[index]}
+                        </NavLink>
+                      </li>
                     )
                 })
               }
-              <div class="btn-group">
+              <div className="btn-group">
                 <img src={lion}
                   alt="profile image"
-                  class="dropdown-toggle rounded-circle"
+                  className="dropdown-toggle rounded-circle"
                   style={{ height: '50px', width: '50px' }}
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 />
-                <ul class="dropdown-menu">
+                <ul className="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#">
                       Settings
                     </a>
                   </li>
                   <li>
-                    <button class="dropdown-item" onClick={logout}>
+                    <button className="dropdown-item" onClick={logout}>
                       Logout
                     </button>
                   </li>

@@ -1,4 +1,4 @@
-import { BrowsePostsElement, CreatePostElement, LoginElement } from "../../elements";
+import { BrowsePostsElement, ChatElement, CreatePostElement, LoginElement } from "../../elements";
 
 
 export const UnauthenticatedRoutes = [
@@ -24,9 +24,13 @@ export const AuthenticatedRoutes = [
         element: <CreatePostElement />
     },
     {
+        path: '/chat',
+        element: <ChatElement />
+    },
+    {
         path: '/editposts',
         element: <CreatePostElement />
     }
 ];
 
-export const AuthenticatedRoutesNames = ['Browse', 'Create'];
+export const AuthenticatedRoutesNames = ['Browse', 'Create', 'Chat'];

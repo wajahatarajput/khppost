@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 export const useUsers = () => {
     const [data, setData] = useState([]);
+    const [chatUsers, setChatUsers] = useState([]);
+
     const { setUser, cookies } = useAuth();
     const navigate = useNavigate();
 
@@ -41,7 +43,14 @@ export const useUsers = () => {
         })
     }, [])
 
+
+    const searchUser = useCallback(async (text) => {
+        await axios.post('http://localhost:3180/searchuser', { text }).then((res) => {
+            setChatUsers(res.data || []);
+        })
+    }, []);
+
     return {
-        data, setData, logout, loginUser, handleRegisterUser, handleDelete, handleUpdateUser
+        data, setData, logout, loginUser, handleRegisterUser, chatUsers, searchUser, handleDelete, handleUpdateUser
     }
 }

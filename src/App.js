@@ -12,11 +12,7 @@ export default function App() {
   return (
     <AuthProvider>
       <PostProvider>
-<<<<<<< HEAD
         <RouterProvider router={router} />
-=======
-      <RouterProvider router={router} />
->>>>>>> cbde9b0fcc174dc7e70a9f92bbc11d4fad15df2c
       </PostProvider>
     </AuthProvider>
   );
