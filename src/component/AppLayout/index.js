@@ -9,7 +9,9 @@ const AppLayout = ({ children }) => {
 
   const { cookies } = useAuth();
   const { logout } = useUsers();
+
   const [routesArray, setRoutesArray] = useState(cookies.get('auth') ? AuthenticatedRoutes : UnauthenticatedRoutes);
+
   const [routesNamesArray, setRoutesNamesArray] = useState(cookies.get('auth') ? AuthenticatedRoutesNames : UnauthenticatedRoutesNames);
 
   console.log(routesNamesArray)

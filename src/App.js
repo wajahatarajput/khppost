@@ -3,7 +3,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { AuthenticatedRoutes, routes, UnauthenticatedRoutes } from './utils';
+import { AuthenticatedRoutes, UnauthenticatedRoutes } from './utils';
 import { AuthProvider, PostProvider } from './providers';
 
 export default function App() {
