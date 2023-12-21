@@ -2,6 +2,7 @@ import React from 'react';
 import { Dislike, DropDots, Like, Share } from './component';
 
 const PostCard = ({ post, handleDelete, index }) => {
+  console.log(post)
   return (
     <div className="col" key={index}>
 
@@ -44,7 +45,7 @@ const PostCard = ({ post, handleDelete, index }) => {
         />
         <hr />
         <div className='d-flex flex-row justify-content-around pt-1 pb-4'>
-          <Like />
+          <Like post={post} />
           <Dislike />
           <Share />
 

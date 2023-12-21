@@ -1,19 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import './chat.css';
 import { useUsers } from '../../hooks/useUsers';
-import { useAuth, useSocket } from '../../providers';
+import { useAuth } from '../../providers';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import socketIOClient from 'socket.io-client';
+
+const ENDPOINT = 'http://localhost:3180';
 
 const Chat = () => {
     const navigate = useNavigate();
+    const socket = socketIOClient(ENDPOINT);
+
     const { chatUsers, searchUser } = useUsers();
     const { cookies } = useAuth();
     const [selectedConversation, setSelectedConversation] = useState(null);
     const [messages, setMessages] = useState([]);
     const [conversation, setConversation] = useState(null);
     var con = null;
-    const { socket } = useSocket();
 
     const getConversation = useCallback(async (conversation) => {
         await axios.post('http://localhost:3180/getConversation', { id: conversation?._id }).then(async (res) => {
@@ -36,6 +40,14 @@ const Chat = () => {
         socket.on('newMessage', async (data) => {
             setMessages(prev => [...prev, data]);
         });
+
+        socket.on('connect', () => {
+            console.log('Connected to server:', socket.id);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
     }, [socket]);
 
     const sendMessage = useCallback(async (e) => {

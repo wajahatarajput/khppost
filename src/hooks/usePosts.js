@@ -1,15 +1,16 @@
 import axios from 'axios';
 import { useCallback } from 'react'
-import { usePostProvider } from '../providers';
+import { useAuth, usePostProvider } from '../providers';
 import { useNavigate } from 'react-router-dom';
 
 export const usePosts = () => {
   // const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const { cookies } = useAuth();
   const { replacePost } = usePostProvider();
 
   const getData = useCallback(async () => {
-    await axios.post('http://localhost:3180/getpostdata').then((res) => {
+    await axios.post('http://localhost:3180/getpostdata', { user: cookies.get('auth') }).then((res) => {
       replacePost(res.data || []);
     })
   }, [replacePost]);
