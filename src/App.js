@@ -4,16 +4,18 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { AuthenticatedRoutes, UnauthenticatedRoutes } from './utils';
-import { AuthProvider, PostProvider } from './providers';
+import { AuthProvider, PostProvider, SocketProvider } from './providers';
 
 export default function App() {
   const router = createBrowserRouter([...AuthenticatedRoutes, ...UnauthenticatedRoutes]);
 
   return (
-    <AuthProvider>
-      <PostProvider>
-        <RouterProvider router={router} />
-      </PostProvider>
-    </AuthProvider>
+    <SocketProvider>
+      <AuthProvider>
+        <PostProvider>
+          <RouterProvider router={router} />
+        </PostProvider>
+      </AuthProvider>
+    </SocketProvider>
   );
 }
