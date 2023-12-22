@@ -3,7 +3,7 @@ import { Dislike, DropDots, Like, Share } from './component';
 import { usePosts } from '../../hooks/usePosts';
 import socketIOClient from 'socket.io-client';
 
-const PostCard = ({ post, handleDelete, index }) => {
+const PostCard = ({ post, handleDelete, index, isViewPage = false }) => {
   const ENDPOINT = 'http://localhost:3180';
   const socket = useMemo(() => socketIOClient(ENDPOINT), []);
   const { getData } = usePosts()
@@ -57,10 +57,16 @@ const PostCard = ({ post, handleDelete, index }) => {
         <div className='d-flex flex-row justify-content-around pt-1 pb-4'>
           <Like post={post} socket={socket} />
           <Dislike post={post} socket={socket} />
-          <Share />
+          <Share post={post} />
 
 
         </div>
+        {
+          isViewPage &&
+          <div>
+            <h1> Comment Section </h1>
+          </div>
+        }
       </div>
     </div>
   )

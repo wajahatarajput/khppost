@@ -13,7 +13,7 @@ export const usePosts = () => {
     await axios.post('http://localhost:3180/getpostdata', { user: cookies.get('auth') }).then((res) => {
       replacePost(res.data || []);
     })
-  }, [replacePost]);
+  }, [replacePost, cookies]);
 
   const handleDelete = useCallback(async (id) => {
     await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then(async (response) => {

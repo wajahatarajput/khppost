@@ -1,4 +1,4 @@
-import { BrowsePostsElement, ChatElement, CreatePostElement, LoginElement } from "../../elements";
+import { BrowsePostsElement, ChatElement, CreatePostElement, LoginElement, ViewPostElement } from "../../elements";
 
 
 export const UnauthenticatedRoutes = [
@@ -26,6 +26,10 @@ export const AuthenticatedRoutes = [
     {
         path: '/chat',
         element: <ChatElement />
+    },
+    {
+        path: '/view',
+        element: <ViewPostElement />
     },
     {
         path: '/editposts',
