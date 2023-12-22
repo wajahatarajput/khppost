@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Dislike, DropDots, Like, Share } from './component';
+import { usePosts } from '../../hooks/usePosts';
+import socketIOClient from 'socket.io-client';
 
 const PostCard = ({ post, handleDelete, index }) => {
-  console.log(post)
+  const ENDPOINT = 'http://localhost:3180';
+  const socket = useMemo(() => socketIOClient(ENDPOINT), []);
+  const { getData } = usePosts()
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to server:', socket.id);
+    });
+  }, [socket, getData]);
+
   return (
     <div className="col" key={index}>
 
@@ -45,8 +55,8 @@ const PostCard = ({ post, handleDelete, index }) => {
         />
         <hr />
         <div className='d-flex flex-row justify-content-around pt-1 pb-4'>
-          <Like post={post} />
-          <Dislike />
+          <Like post={post} socket={socket} />
+          <Dislike post={post} socket={socket} />
           <Share />
 
 
