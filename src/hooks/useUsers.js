@@ -14,10 +14,9 @@ export const useUsers = () => {
             setData(res.data)
             setUser(res.data);
             cookies.set("auth", res.data._id, { path: '/' })
-            navigate('/');
 
         })
-    }, [setUser, cookies, navigate]);
+    }, [setUser, cookies]);
 
     const handleDelete = useCallback(async (id) => {
         await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then((response) => {
@@ -42,6 +41,7 @@ export const useUsers = () => {
             // setData(prev => [...prev, res.data]);
         })
     }, [])
+
 
     return {
         data, setData, logout, loginUser, handleRegisterUser, handleDelete, handleUpdateUser

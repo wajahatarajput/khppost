@@ -22,11 +22,13 @@ export default function App() {
 
   return (
     <AuthProvider>
+      <ConversationProvider>
       <PostProvider>
         <ConversationProvider>
           <RouterProvider router={router} />
         </ConversationProvider>
       </PostProvider>
+      </ConversationProvider>
     </AuthProvider>
   );
 }
