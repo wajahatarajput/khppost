@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import lion from './lion.jpg';
-import { AuthenticatedRoutes, AuthenticatedRoutesNames, UnauthenticatedRoutes, UnauthenticatedRoutesNames } from './../../utils';
-import { NavLink, useLocation, useNavigate, useRouteError } from "react-router-dom";
 import { useAuth } from "../../providers";
 import { useUsers } from "../../hooks/useUsers";
+import Links from "./components/Links";
 
 const AppLayout = ({ children }) => {
   const { cookies } = useAuth();
   const { logout } = useUsers();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [routesArray, setRoutesArray] = useState(cookies.get('auth') ? AuthenticatedRoutes : UnauthenticatedRoutes);
-  const [routesNamesArray, setRoutesNamesArray] = useState(cookies.get('auth') ? AuthenticatedRoutesNames : UnauthenticatedRoutesNames);
 
+  const isAuthenticated = !!cookies.get('auth');
 
-  useEffect(() => {
-    if (!cookies.get('auth')) {
-      if (!location.pathname === '/browserposts')
-        navigate('/')
-    }
-  }, [cookies, navigate, location])
 
   return (
     <>
@@ -67,46 +57,40 @@ const AppLayout = ({ children }) => {
               Search
             </a>
             <ul className="navbar-nav align-items-center">
-              {
-                routesArray?.map((route, index) => {
-                  if (route.path === '/editposts')
-                    return <span key={index}></span>
-                  else
-                    return (
-                      <li className="nav-item" key={index}>
-                        <NavLink className="nav-link active" style={{
-                          fontWeight: 'bold',
-                          backdropFilter: 'opacity(1)',
-                          backdropFilter: 'opacity(1)',
-                          width: 'max-content'
-                        }} to={route.path}>
-                          {routesNamesArray[index]}
-                        </NavLink>
-                      </li>
-                    )
-                })
+              {!isAuthenticated &&
+                <Links path={'/'} text={"Login / Register"} />
               }
-              <div className="btn-group">
-                <img src={lion}
-                  alt="profile image"
-                  className="dropdown-toggle rounded-circle"
-                  style={{ height: '50px', width: '50px' }}
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                />
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <button className="dropdown-item" onClick={logout}>
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </div>
+              <Links path={'/browserposts'} text={"Browse"} />
+              {isAuthenticated &&
+                <>
+                  <Links path={'/createposts'} text={"Create"} />
+                  <Links path={'/chat'} text={"Chat"} />
+                </>
+              }
+
+              {cookies.get('auth') &&
+                <div className="btn-group">
+                  <img src={lion}
+                    alt="profile image"
+                    className="dropdown-toggle rounded-circle"
+                    style={{ height: '50px', width: '50px' }}
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  />
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Settings
+                      </a>
+                    </li>
+                    <li>
+                      <button className="dropdown-item" onClick={logout}>
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              }
             </ul>
           </div>
         </div>

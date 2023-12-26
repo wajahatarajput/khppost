@@ -8,11 +8,10 @@ export const useChat = (socket) => {
     const [conversation, setConversation] = useState(null);
     const { cookies } = useAuth();
     const { searchUser } = useConversations();
-
     var con = null;
 
     const getConversation = useCallback(async (conversation) => {
-        await axios.post('http://localhost:3180/getConversation', { id: conversation?._id }).then(async (res) => {
+        await axios.post('http://localhost:3180/getConversationByUser', { id: conversation?._id, user_id: cookies.get('auth') }).then(async (res) => {
             con = res.data?._id
             await axios.post('http://localhost:3180/getConversationMessages', { id: res?.data?._id }).then((res) => {
                 setMessages(res.data)
@@ -30,6 +29,8 @@ export const useChat = (socket) => {
 
     const sendMessage = useCallback(async (e) => {
         e.preventDefault();
+
+        console.log(socket)
 
         await socket.emit('sendMessage', {
             content: e.target[0].value,

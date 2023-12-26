@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import './chat.css';
-import { useUsers } from '../../hooks/useUsers';
 import { useAuth } from '../../providers';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 import { useChat } from './useChat';
@@ -16,7 +14,7 @@ const Chat = () => {
 
     const { chatUsers } = useConversations();
     const { cookies } = useAuth();
-    const { handleSearchChange, sendMessage, loadMessages, messages, selectedConversation, setMessages } = useChat();
+    const { handleSearchChange, sendMessage, loadMessages, messages, selectedConversation, setMessages } = useChat(socket);
 
     useEffect(() => {
         socket.on('newMessage', async (data) => {
@@ -65,52 +63,34 @@ const Chat = () => {
                                             </div>
                                         </div>
                                         <ul className="users">
-                                            {/* {
-                                                chatUsers.map((user, index) => {
-                                                    let name = user.displayName;
-                                                    let date = user.createdAt;
-                                                    return (
-                                                        <li className="cursor person d-flex justify-content-evenly align-items-center" data-chat="person1" key={index} onClick={() => { loadMessages(user) }}>
+                                            {
+                                                chatUsers.length > 0 ? (
+                                                    chatUsers.map((user, index) => (
+                                                        <li
+                                                            className="cursor person d-flex justify-content-evenly align-items-center"
+                                                            data-chat="person1"
+                                                            key={index}
+                                                            onClick={() => {
+                                                                loadMessages(user);
+                                                            }}
+                                                        >
                                                             <div className="user">
-                                                                <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin" />
+                                                                <img
+                                                                    src="https://www.bootdey.com/img/Content/avatar/avatar3.png"
+                                                                    alt="Retail Admin"
+                                                                />
                                                                 <span className="status active"></span>
                                                             </div>
                                                             <p className="name-time text-truncate">
-                                                                <span className="name">{name}</span>
-                                                                <span className="time"> {date}</span>
+                                                                <span className="name">{user.displayName}</span>
+                                                                <span className="time"> {user.createdAt}</span>
                                                             </p>
                                                         </li>
-                                                    )
-                                                })
-                                            } */}
-{
-  chatUsers.length > 0 ? (
-    chatUsers.map((user, index) => (
-      <li
-        className="cursor person d-flex justify-content-evenly align-items-center"
-        data-chat="person1"
-        key={index}
-        onClick={() => {
-          loadMessages(user);
-        }}
-      >
-        <div className="user">
-          <img
-            src="https://www.bootdey.com/img/Content/avatar/avatar3.png"
-            alt="Retail Admin"
-          />
-          <span className="status active"></span>
-        </div>
-        <p className="name-time text-truncate">
-          <span className="name">{user.displayName}</span>
-          <span className="time"> {user.createdAt}</span>
-        </p>
-      </li>
-    ))
-  ) : (
-    <p>No conversations available</p>
-  )
-}
+                                                    ))
+                                                ) : (
+                                                    <p>No conversations available</p>
+                                                )
+                                            }
 
                                         </ul>
                                     </div>
