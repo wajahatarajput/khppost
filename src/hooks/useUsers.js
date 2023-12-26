@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const useUsers = () => {
     const [data, setData] = useState([]);
-    const [chatUsers, setChatUsers] = useState([]);
 
     const { setUser, cookies } = useAuth();
     const navigate = useNavigate();
@@ -15,9 +14,10 @@ export const useUsers = () => {
             setData(res.data)
             setUser(res.data);
             cookies.set("auth", res.data._id, { path: '/' })
+            navigate('/');
 
         })
-    }, [setUser, cookies]);
+    }, [setUser, cookies, navigate]);
 
     const handleDelete = useCallback(async (id) => {
         await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then((response) => {
@@ -43,14 +43,7 @@ export const useUsers = () => {
         })
     }, [])
 
-
-    const searchUser = useCallback(async (text) => {
-        await axios.post('http://localhost:3180/searchuser', { text }).then((res) => {
-            setChatUsers(res.data || []);
-        })
-    }, []);
-
     return {
-        data, setData, logout, loginUser, handleRegisterUser, chatUsers, searchUser, handleDelete, handleUpdateUser
+        data, setData, logout, loginUser, handleRegisterUser, handleDelete, handleUpdateUser
     }
 }

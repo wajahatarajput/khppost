@@ -1,6 +1,5 @@
 import { BrowsePostsElement, ChatElement, CreatePostElement, LoginElement, ViewPostElement } from "../../elements";
 
-
 export const UnauthenticatedRoutes = [
     {
         path: "/",
@@ -16,7 +15,7 @@ export const UnauthenticatedRoutesNames = ['Login / Register', 'Browse'];
 
 export const AuthenticatedRoutes = [
     {
-        path: '/browserposts',
+        path: '/',
         element: <BrowsePostsElement />
     },
     {

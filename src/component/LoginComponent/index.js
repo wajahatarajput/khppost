@@ -1,21 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useUsers } from '../../hooks/useUsers';
-import { useAuth } from '../../providers';
-import { useNavigate } from 'react-router-dom';
 
 const LoginComponent = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isSignUpActive, setIsSignUpActive] = useState(false);
   const [image, setImage] = useState(null);
-  const { cookies } = useAuth();
-  const navigate = useNavigate();
   const { handleRegisterUser, loginUser } = useUsers();
-
-  useEffect(() => {
-    if (cookies.get('auth')) {
-      navigate('/browserposts')
-    }
-  }, [cookies, navigate])
 
   const handleTogglePassword = () => {
     setIsPasswordVisible(!isPasswordVisible);

@@ -23,13 +23,13 @@ export const usePosts = () => {
 
   const handleCreatePost = useCallback(async (post) => {
     await axios.post('http://localhost:3180/createpost', { post }).then((res) => {
-      navigate('/browserposts')
+      navigate('/')
     })
   }, [navigate])
 
   const handleUpdatePost = useCallback(async (id, post) => {
     await axios.put('http://localhost:3180/updatepost', { id, post }).then(async (res) => {
-      navigate('/browserposts')
+      navigate('/')
     })
   }, [navigate])
 

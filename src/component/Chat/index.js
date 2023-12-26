@@ -1,40 +1,25 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './chat.css';
-import { useUsers } from '../../hooks/useUsers';
-import { useAuth } from '../../providers';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
+import { useChat } from './useChat';
+import { useConversations } from '../../providers';
 
 const ENDPOINT = 'http://localhost:3180';
 
 const Chat = () => {
     const navigate = useNavigate();
     const socket = socketIOClient(ENDPOINT);
-
-    const { chatUsers, searchUser } = useUsers();
-    const { cookies } = useAuth();
-    const [selectedConversation, setSelectedConversation] = useState(null);
-    const [messages, setMessages] = useState([]);
-    const [conversation, setConversation] = useState(null);
-    var con = null;
-
-    const getConversation = useCallback(async (conversation) => {
-        await axios.post('http://localhost:3180/getConversation', { id: conversation?._id }).then(async (res) => {
-            con = res.data?._id
-            await axios.post('http://localhost:3180/getConversationMessages', { id: res?.data?._id }).then((res) => {
-                setMessages(res.data)
-            })
-        })
-        setConversation(con)
-    }, []);
-
-    const loadMessages = useCallback(async (conv) => {
-        getConversation(conv).then(async () => {
-            setSelectedConversation(conv);
-        })
-
-    }, [getConversation])
+    const { chatUsers } = useConversations();
+    const {
+        setMessages,
+        handleSearchChange,
+        sendMessage,
+        loadMessages,
+        messages,
+        cookies,
+        selectedConversation
+    } = useChat();
 
     useEffect(() => {
         socket.on('newMessage', async (data) => {
@@ -48,26 +33,7 @@ const Chat = () => {
         return () => {
             socket.disconnect();
         };
-    }, [socket]);
-
-    const sendMessage = useCallback(async (e) => {
-        e.preventDefault();
-
-        await socket.emit('sendMessage', {
-            content: e.target[0].value,
-            sender: cookies.get('auth'),
-            receiver: selectedConversation?._id,
-            newConversation: !conversation ? 0 : conversation
-        });
-
-        e.target[0].value = '';
-
-    }, [socket, cookies, selectedConversation, conversation])
-
-
-    const handleSearchChange = useCallback(async (e) => {
-        searchUser(e.target.value)
-    }, [searchUser]);
+    }, [socket, setMessages]);
 
     return (
         <div className="w-100 p-3">
@@ -104,6 +70,8 @@ const Chat = () => {
                                         <ul className="users">
                                             {
                                                 chatUsers.map((user, index) => {
+                                                    let name = user.displayName;
+                                                    let date = user.createdAt;
                                                     return (
                                                         <li className="cursor person d-flex justify-content-evenly align-items-center" data-chat="person1" key={index} onClick={() => { loadMessages(user) }}>
                                                             <div className="user">
@@ -111,8 +79,8 @@ const Chat = () => {
                                                                 <span className="status active"></span>
                                                             </div>
                                                             <p className="name-time text-truncate">
-                                                                <span className="name">{user.displayName}</span>
-                                                                <span className="time"> {user.createdAt}</span>
+                                                                <span className="name">{name}</span>
+                                                                <span className="time"> {date}</span>
                                                             </p>
                                                         </li>
                                                     )

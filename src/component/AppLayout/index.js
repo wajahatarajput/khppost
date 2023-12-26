@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import lion from './lion.jpg';
 import { AuthenticatedRoutes, AuthenticatedRoutesNames, UnauthenticatedRoutes, UnauthenticatedRoutesNames } from './../../utils';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useRouteError } from "react-router-dom";
 import { useAuth } from "../../providers";
 import { useUsers } from "../../hooks/useUsers";
 
 const AppLayout = ({ children }) => {
-
   const { cookies } = useAuth();
   const { logout } = useUsers();
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const [routesArray, setRoutesArray] = useState(cookies.get('auth') ? AuthenticatedRoutes : UnauthenticatedRoutes);
-
   const [routesNamesArray, setRoutesNamesArray] = useState(cookies.get('auth') ? AuthenticatedRoutesNames : UnauthenticatedRoutesNames);
 
-  console.log(routesNamesArray)
+
+  useEffect(() => {
+    if (!cookies.get('auth')) {
+      if (!location.pathname === '/browserposts')
+        navigate('/')
+    }
+  }, [cookies, navigate, location])
+
   return (
     <>
       <nav className="navbar navbar-light navbar-expand-md py-3">
