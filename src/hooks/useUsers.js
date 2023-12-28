@@ -14,9 +14,10 @@ export const useUsers = () => {
             setData(res.data)
             setUser(res.data);
             cookies.set("auth", res.data._id, { path: '/' })
+            navigate('/browserposts')
 
         })
-    }, [setUser, cookies]);
+    }, [setUser, cookies, navigate]);
 
     const handleDelete = useCallback(async (id) => {
         await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then((response) => {
