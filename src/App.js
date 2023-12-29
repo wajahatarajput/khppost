@@ -9,6 +9,7 @@ import Cookies from 'universal-cookie';
 import { BrowsePostsElement, ChatElement, CreatePostElement, LoginElement, ViewPostElement } from './elements';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App() {
@@ -49,8 +50,8 @@ export default function App() {
       <PostProvider>
         <ConversationProvider>
           <RouterProvider router={router} />
-          
-      <ToastContainer/>
+
+          <ToastContainer />
         </ConversationProvider>
       </PostProvider>
     </AuthProvider>

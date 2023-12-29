@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { usePosts } from '../../hooks/usePosts';
 import { useAuth } from '../../providers'
 
@@ -66,7 +65,7 @@ const ComposePostComponent = () => {
             <form onSubmit={handleSubmit}>
               <div style={{ background: `url(${image || post?.photo})`, height: '250px' }}>
                 <label className='fa fa-upload upload-icon' htmlFor={'file'} />
-                <input id='file' type="file" onChange={handleImageUpload} hidden/>
+                <input id='file' type="file" onChange={handleImageUpload} hidden />
               </div>
               <div className="input-field">
                 <input type="text" placeholder="Enter Text" defaultValue={post?.content} required />

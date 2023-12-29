@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react'
 import { useAuth } from '../providers';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 export const useUsers = () => {
@@ -11,11 +12,14 @@ export const useUsers = () => {
 
     const loginUser = useCallback(async (user) => {
         await axios.post('http://localhost:3180/login', { user }).then((res) => {
-            setData(res.data)
-            setUser(res.data);
-            cookies.set("auth", res.data._id, { path: '/' })
-            navigate('/browserposts')
-
+            if (res?.data) {
+                setData(res.data)
+                setUser(res.data);
+                cookies.set("auth", res.data._id, { path: '/' })
+                navigate('/browserposts')
+            } else {
+                toast.error('Invalid Credentials!');
+            }
         })
     }, [setUser, cookies, navigate]);
 
@@ -25,7 +29,7 @@ export const useUsers = () => {
         });
     }, []);
 
-    const logout = useCallback(async (id) => {
+    const logout = useCallback(async () => {
         cookies.remove('auth');
         navigate('/')
     }, [cookies, navigate]);
