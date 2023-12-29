@@ -28,7 +28,6 @@ const ConversationProvider = ({ children }) => {
 
     const getConversations = useCallback(async () => {
         await axios.post('http://localhost:3180/getConversation', { id: cookies?.get('auth') }).then(({ data }) => {
-            console.log(data)
             const usersDataByConversation = data?.map((conversation) => {
                 return conversation?.receiver?._id === cookies.get('auth') ? conversation?.sender : conversation?.receiver;
             })

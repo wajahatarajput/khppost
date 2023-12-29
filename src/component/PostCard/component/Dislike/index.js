@@ -30,11 +30,11 @@ const Dislike = ({ post, socket }) => {
   }, [socket, post, cookies, liked]);
   return (
     <>
-      <button type="button" class="position-relative bg-light border border-0" onClick={handledisLikeOrUndislike}>
+      <button type="button" className="position-relative bg-light border border-0" onClick={handledisLikeOrUndislike}>
         <i className='fa fa-thumbs-down fs-4' style={{ color: liked ? 'red' : 'silver' }}>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: 'x-small' }}>
+          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: 'x-small' }}>
             {post?.dislikeCount}
-            <span class="visually-hidden">unread messages</span>
+            <span className="visually-hidden">unread messages</span>
           </span>
         </i>
       </button>

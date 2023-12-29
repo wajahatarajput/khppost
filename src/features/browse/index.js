@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { PostCard, PostGrid } from '../../component';
 import { usePosts } from '../../hooks/usePosts';
 import { usePostProvider } from '../../providers';
@@ -12,13 +12,15 @@ const BrowsePostsFeature = () => {
     getData();
   }, [getData])
 
+  const memoizedPostCards = useMemo(() => {
+    return posts?.map((post, index) => (
+      <PostCard key={index} post={post} handleDelete={handleDelete} index={index} />
+    ));
+  }, [posts, handleDelete]);
+
   return (
     <PostGrid>
-      {
-        posts?.map((post, index) => {
-          return <PostCard post={post} handleDelete={handleDelete} index={index} key={index} />
-        })
-      }
+      {memoizedPostCards}
     </PostGrid>
   )
 }

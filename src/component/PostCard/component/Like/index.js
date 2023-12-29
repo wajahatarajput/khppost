@@ -30,11 +30,11 @@ const Like = ({ post, socket }) => {
 
   return (
     <>
-      <button type="button" class="position-relative bg-light border border-0" onClick={handleLikeOrUnlike}>
+      <button type="button" className="position-relative bg-light border border-0" onClick={handleLikeOrUnlike}>
         <i className='fa fa-thumbs-up fs-4' style={{ color: liked ? 'blue' : 'silver' }}>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style={{ fontSize: 'x-small' }}>
+          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style={{ fontSize: 'x-small' }}>
             {post?.likeCount}
-            <span class="visually-hidden">unread messages</span>
+            <span className="visually-hidden">unread messages</span>
           </span>
         </i>
       </button>

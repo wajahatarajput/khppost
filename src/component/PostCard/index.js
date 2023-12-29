@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../providers';
 
 const PostCard = ({ post, handleDelete, index, isViewPage = false }) => {
-
   const ENDPOINT = 'http://localhost:3180';
   const socket = useMemo(() => socketIOClient(ENDPOINT), []);
-  const { getData } = usePosts();
+  const { getData, getDataById } = usePosts();
   const navigate = useNavigate();
   const { cookies } = useAuth();
   const [text, setText] = useState("");
@@ -21,15 +20,17 @@ const PostCard = ({ post, handleDelete, index, isViewPage = false }) => {
     });
 
     socket.on('newComment', ({ updatedPost }) => {
-      setComments(updatedPost?.comments)
+      if (updatedPost)
+        window.location.reload();
     });
+
 
     // socket.on('disconnect', () => {
     //   console.log('Disconnected from server:', socket.id);
     //   // Additional disconnect handling logic can be added here
     // });
 
-  }, [socket, getData, post]);
+  }, [socket, getData, post, getDataById, isViewPage]);
 
 
 
@@ -42,9 +43,22 @@ const PostCard = ({ post, handleDelete, index, isViewPage = false }) => {
     }
     socket.emit('publishComment', { comment });
 
-  }, [post, cookies, socket, text])
+  }, [post, cookies, socket, text]);
 
-  console.log(post)
+  const memoizedComments = useMemo(() => {
+    return comments.map((comment, index) => (
+      <li key={index} className="list-group-item">
+        <div>
+          <div className="d-flex justify-content-between align-items-center">
+            <span>{comment.user?.displayName}</span>
+            <span style={{ fontSize: 9 }}> {comment?.createdAt} </span>
+          </div>
+          <p style={{ color: '#24242491', fontSize: 14 }}>{comment?.content}</p>
+        </div>
+      </li>
+    ));
+  }, [comments]); // Only recompute when comments change
+
 
   return (
     <>
@@ -58,7 +72,7 @@ const PostCard = ({ post, handleDelete, index, isViewPage = false }) => {
       }
       <div className={`${isViewPage ? " d-flex flex-column justify-content-center align-items-center" : "col"}`} key={index}>
 
-        <div className={`${isViewPage} ? 'card w-50' : 'card'`} >
+        <div className={`${isViewPage ? 'card w-50 border border-1 mb-5 p-3' : 'card'}`} >
           <div className="d-flex pt-3 px-3 justify-content-between">
             <img
               alt=''
@@ -107,24 +121,8 @@ const PostCard = ({ post, handleDelete, index, isViewPage = false }) => {
             isViewPage &&
             <>
               <hr />
-              <ul class="list-group list-group-flush">
-
-                {comments.map((comment, index) => {
-                  return (
-                    <li class="list-group-item">
-                      <div>
-                        <div className='d-flex justify-content-between align-items-center'>
-                          <span>{comment.user?.displayName}</span>
-                          <span style={{ fontSize: 9 }}> {comment?.createdAt} </span>
-                        </div>
-                        <p style={{ color: '#24242491', fontSize: 14 }}>
-                          {comment?.content}
-                        </p>
-                      </div>
-                    </li>
-                  )
-                })
-                }
+              <ul className="list-group list-group-flush">
+                {memoizedComments}
               </ul>
               <div className='form d-flex'>
                 <input type='text' className='form-control' onChange={(e) => setText(e.target.value)} />

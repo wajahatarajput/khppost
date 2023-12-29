@@ -15,6 +15,11 @@ export const usePosts = () => {
     })
   }, [replacePost, cookies]);
 
+  const getDataById = useCallback(async (id) => {
+    let post = await axios.post('http://localhost:3180/getpostdatabyid', { id, user: cookies.get('auth') });
+    return post?.data[0];
+  }, [cookies]);
+
   const handleDelete = useCallback(async (id) => {
     await axios.delete(`http://localhost:3180/deletepost`, { data: { id } }).then(async (response) => {
       await getData();
@@ -34,6 +39,6 @@ export const usePosts = () => {
   }, [navigate])
 
   return {
-    getData, handleCreatePost, handleDelete, handleUpdatePost
+    getData, handleCreatePost, handleDelete, handleUpdatePost, getDataById
   }
 }
