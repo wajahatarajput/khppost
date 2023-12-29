@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { usePosts } from '../../hooks/usePosts';
 import { useAuth } from '../../providers'
 
@@ -25,24 +27,33 @@ const ComposePostComponent = () => {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
 
-    const currentPost = {
-      content: e.target[1].value,
-      user: cookies.get('auth'), // Assuming you have a valid ObjectId for the user
-      createdAt: new Date(),
-      reactions: [], // Assuming you have valid ObjectIds for reactions
-      comments: [], // Assuming you have valid ObjectIds for comments
-      photo: image || post?.photo, // Assuming you have actual photo data as a Buffer
-      tags: [e.target[2].value],
-      status: "PUBLISHED"
-    };
+    // toast.error("Please Upload the Image");
+    // console.log(!!image)
+
+    if (image === null) {
+      toast.error("Please Upload the Image");
+      return;
+    } else {
+
+      const currentPost = {
+        content: e.target[1].value,
+        user: cookies.get('auth'), // Assuming you have a valid ObjectId for the user
+        createdAt: new Date(),
+        reactions: [], // Assuming you have valid ObjectIds for reactions
+        comments: [], // Assuming you have valid ObjectIds for comments
+        photo: image || post?.photo, // Assuming you have actual photo data as a Buffer
+        tags: [e.target[2].value],
+        status: "PUBLISHED"
+      };
 
 
-    //edit post call api for edit post
-    !id
-      ?
-      await handleCreatePost(currentPost)
-      :
-      await handleUpdatePost(id, currentPost)
+      //edit post call api for edit post
+      !id
+        ?
+        await handleCreatePost(currentPost)
+        :
+        await handleUpdatePost(id, currentPost)
+    }
   }, [image, handleCreatePost, handleUpdatePost, id, cookies, post]);
 
 
@@ -55,7 +66,7 @@ const ComposePostComponent = () => {
             <form onSubmit={handleSubmit}>
               <div style={{ background: `url(${image || post?.photo})`, height: '250px' }}>
                 <label className='fa fa-upload upload-icon' htmlFor={'file'} />
-                <input id='file' type="file" onChange={handleImageUpload} hidden />
+                <input id='file' type="file" onChange={handleImageUpload} hidden/>
               </div>
               <div className="input-field">
                 <input type="text" placeholder="Enter Text" defaultValue={post?.content} required />
