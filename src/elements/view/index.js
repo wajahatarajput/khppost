@@ -1,9 +1,12 @@
 import React from 'react'
 import { ViewPostPage } from '../../pages';
+import { AppLayout } from '../../component';
 
 const ViewPostElement = () => {
     return (
-        <ViewPostPage />
+        <AppLayout>
+            <ViewPostPage />
+        </AppLayout>
     )
 }
 

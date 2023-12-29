@@ -12,6 +12,7 @@ import { BrowsePostsElement, ChatElement, CreatePostElement, LoginElement, ViewP
 export default function App() {
   const cookies = new Cookies(null, { path: '/' });
   const isAuthenticated = !!cookies.get('auth');
+  console.log(isAuthenticated);
   const routes = [
     {
       path: "/",
